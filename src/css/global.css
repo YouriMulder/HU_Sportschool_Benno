@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold.ttf');
+}
+
+#menuAccent {
+    -fx-background-color: #002f6c;
+}
+
+#menuBlackAccent {
+    -fx-background-color: black;
+}
+
+#menuBar {
+    -fx-background-color: #01579b;
+}
+
+#navBar {
+    -fx-background-color: #4f83cc;
+}
+
+#footerBar {
+    -fx-background-color: #4f83cc;
+}
+
+#imageViewPanel {
+    -fx-background-color: #000000;
+}
+
+#bedrijfsnaamBox {
+    -fx-background-color: #01579b;
+}
+
+#bedrijfsnaam {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 40px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#imageViewAvatar {
+    -fx-border-radius: 3px;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+}
+
+.button {
+    -fx-background-color: none;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 0%;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.button:hover {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
+}
+
+.button:pressed {
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: white;
+}
+
+#navBar .button {
+    -fx-background-color: none;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 0%;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 24px;
+}
+
+#navBar .button:hover {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
+}
+
+#navBar .button:pressed {
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: white;
+}

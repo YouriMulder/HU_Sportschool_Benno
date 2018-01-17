@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.web.*?>
 <?import javafx.scene.control.*?>
@@ -10,44 +13,81 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.mainController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+<BorderPane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.mainController">
+   <top>
+      <VBox fx:id="menuAccent" maxHeight="55.0" prefHeight="55.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+            <HBox maxHeight="-Infinity" prefHeight="10.0" />
+            <HBox fx:id="menuBar" maxHeight="45.0">
                <children>
-                  <Label alignment="CENTER" text="Username" />
-                  <TextField id="usernameField" fx:id="usernameField" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="goToLoginButton" mnemonicParsing="false" onAction="#goToLoginButtonPressed" text="Login" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="640.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" text="Lid worden" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </HBox>
                </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label alignment="CENTER" text="Password" />
-                  <PasswordField fx:id="passwdField" />
-               </children>
-            </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-               <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonPressed" text="Login" />
-                  <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonPressed" text="Register" />
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </HBox>
          </children>
       </VBox>
-   </center>
-   <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </top>
-   <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </bottom>
+   <center>
+      <HBox fx:id="imageViewPanel">
+         <children>
+            <ImageView fx:id="imageView" fitHeight="570.0" fitWidth="980.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
+               <image>
+                  <Image url="@../pictures/fitness_1.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </center>
    <left>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="navBar" maxWidth="300.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox id="navBar" fx:id="navBar" maxWidth="300.0" prefWidth="300.0" spacing="20.0">
+               <VBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="buttonSportschool" mnemonicParsing="false" text="Onze sportschool" />
+                  <Button fx:id="buttonSportschool1" mnemonicParsing="false" text="Abonnementen" />
+                  <Button mnemonicParsing="false" text="Faciliteiten" />
+                  <Button mnemonicParsing="false" text="Groepslessen" />
+                  <Button mnemonicParsing="false" text="ICT voorzieningen" />
+                  <Button mnemonicParsing="false" text="Dashboard" />
+                  <Button mnemonicParsing="false" text="Over ons" />
+               </children></VBox>
+         </children>
+      </VBox>
    </left>
-   <right>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </right>
+   <bottom>
+      <VBox minHeight="115.0">
+         <children>
+            <HBox fx:id="footerBar" minHeight="105.0" minWidth="0.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="300.0" />
+                  <HBox fx:id="bedrijfsnaamBox" alignment="CENTER_LEFT" minWidth="980.0" prefHeight="100.0">
+                     <children>
+                        <Label fx:id="bedrijfsnaam" text="Benno's sportschool">
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children></HBox>
+            <HBox fx:id="menuBlackAccent" minHeight="10.0" />
+         </children>
+      </VBox>
+   </bottom>
 </BorderPane>

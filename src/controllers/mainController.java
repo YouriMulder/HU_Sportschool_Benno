@@ -1,73 +1,100 @@
 package controllers;
 
-import database.databaseManagement;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
-public class mainController {
-    public TextField usernameField;
-    public PasswordField passwdField;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-    public void loginButtonPressed() {
-        String usernameInput = usernameField.getText().toLowerCase();
-        String passwdInput = passwdField.getText().toLowerCase();
+public class mainController implements Initializable {
+    @FXML
+    private ImageView imageView;
 
-        // checks if user input can be found in the database
-        String accountCorrect = databaseManagement.checkLoginData(usernameInput, passwdInput);
+    @FXML
+    private Button buttonSportschool;
 
-        if (accountCorrect.equals("Login details correct")) {
-            System.out.println("Logged in as " + usernameInput + "");
-            // TODO go to the next page
+    public Button goToLoginButton;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // list to store all the images of the gym
+        ArrayList<Image> imageList = new ArrayList<>();
+
+        // add all the images to the list
+        addAllImagesToList(imageList);
+        imageView.setImage(imageList.get(0));
+        imageView.setFitWidth(imageView.getFitWidth());
+
+        // image handler
+        // first image changer
+        buttonSportschool.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        imageView.setImage(imageList.get(1));
+                    }
+                });
+
+        buttonSportschool.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        imageView.setImage(imageList.get(0));
+                    }
+                });
+    }
+
+    @FXML
+    public void goToLoginButtonPressed(javafx.event.ActionEvent event) throws Exception {
+        // load scenes
+        Parent loginScene = FXMLLoader.load(getClass().getResource("../scenes/loginScene.fxml"));
+        loginScene.getStylesheets().add("css/global.css");
+
+        // getting window
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        primaryStage.setScene(new Scene(loginScene, primaryStage.getMaxWidth(), primaryStage.getHeight()));
+        primaryStage.show();
+
+
+    }
+
+    private void addAllImagesToList(ArrayList imageList) {
+
+        ArrayList<String> pathList = new ArrayList<>();
+        pathList.add("fitness_1");
+        pathList.add("fitness_2");
+        pathList.add("fitness_3");
+        pathList.add("fitness_4");
+        pathList.add("fitness_5");
+        pathList.add("pool_1");
+        pathList.add("pool_2");
+        pathList.add("spa_1");
+
+        for (String path : pathList) {
+            addImageToList(imageList, "src/pictures/" + path + ".jpg");
         }
-        else {
-            System.out.println(accountCorrect);
-        }
     }
 
-    public void registerButtonPressed() {
-        // TODO make register function in the database
-        // TODO make register message show up as popup
-        String usernameInput = usernameField.getText().toLowerCase();
-        String passwdInput = passwdField.getText().toLowerCase();
-
-        // registers account and returns a message based on the error or success
-        String registerMessage = databaseManagement.registerAccount(usernameInput, passwdInput);
-        if (registerMessage.equals("Account created successfully")) {
-            emptyLoginFields();
-            showPopup("Your account is successfully created");
-        } else {
-            emptyPasswdField();
-            showErrorPopup("OOPS, something went wrong", registerMessage);
-        }
-
-        System.out.println(registerMessage);
-    }
-
-    private void emptyLoginFields() {
-        usernameField.setText(null);
-        passwdField.setText(null);
-    }
-
-    private void emptyPasswdField() {
-        passwdField.setText(null);
-    }
-
-    private void showErrorPopup(String errorHeader, String errorMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error dialog");
-        alert.setHeaderText(errorHeader);
-        alert.setContentText(errorMessage);
-        alert.showAndWait();
-    }
-
-    private void showPopup(String infoMessage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information dialog");
-        alert.setHeaderText(null);
-        alert.setContentText(infoMessage);
-
-        alert.showAndWait();
+    private void addImageToList (ArrayList imageList, String imagePath) {
+        File file = new File(imagePath);
+        Image image = new Image(file.toURI().toString());
+        imageList.add(image);
     }
 
 }
