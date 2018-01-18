@@ -39,9 +39,15 @@
 }
 
 #imageViewAvatar {
-    -fx-border-radius: 3px;
-    -fx-border-color: blue;
-    -fx-border-width: 2px;
+    -fx-padding: 10;
+    -fx-background-color: firebrick;
+    -fx-background-radius: 5;
+}
+
+.label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px;
 }
 
 .button {

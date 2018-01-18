@@ -21,13 +21,21 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class mainController implements Initializable {
-    @FXML
-    private ImageView imageView;
+    // the image in the middle of the screen
+    public ImageView imageView;
 
-    @FXML
-    private Button buttonSportschool;
+    // navigation bar buttons
+    public Button buttonSportschool;
+    public Button buttonAbonnementen;
+    public Button buttonFaciliteiten;
+    public Button buttonGroepslessen;
+    public Button buttonICTVoorzieningen;
+    public Button buttonDashboard;
+    public Button buttonOverOns;
 
+    // go to another page buttons
     public Button goToLoginButton;
+    public Button goToRegisterButton;
 
 
     @Override
@@ -41,50 +49,78 @@ public class mainController implements Initializable {
         imageView.setFitWidth(imageView.getFitWidth());
 
         // image handler
-        // first image changer
+        // button 1 onze sportschool
         buttonSportschool.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent e) {
-                        imageView.setImage(imageList.get(1));
-                    }
-                });
+                e -> imageView.setImage(imageList.get(1)));
 
         buttonSportschool.addEventHandler(MouseEvent.MOUSE_EXITED,
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent e) {
-                        imageView.setImage(imageList.get(0));
-                    }
-                });
+                e -> imageView.setImage(imageList.get(0)));
+
+        // button 2 abonnementen
+        buttonAbonnementen.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                e -> imageView.setImage(imageList.get(2)));
+
+        buttonAbonnementen.addEventHandler(MouseEvent.MOUSE_EXITED,
+                e -> imageView.setImage(imageList.get(0)));
+
+        // button 3 faciliteiten
+        buttonFaciliteiten.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                e -> imageView.setImage(imageList.get(3)));
+
+        buttonFaciliteiten.addEventHandler(MouseEvent.MOUSE_EXITED,
+                e -> imageView.setImage(imageList.get(0)));
+
+        // button 4 groepslessen
+        buttonGroepslessen.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                e -> imageView.setImage(imageList.get(4)));
+
+        buttonGroepslessen.addEventHandler(MouseEvent.MOUSE_EXITED,
+                e -> imageView.setImage(imageList.get(0)));
+
+        // button 5 ICT voorzieningen
+        buttonICTVoorzieningen.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                e -> imageView.setImage(imageList.get(5)));
+
+        buttonICTVoorzieningen.addEventHandler(MouseEvent.MOUSE_EXITED,
+                e -> imageView.setImage(imageList.get(0)));
+
+        // button 6 dashboard
+        buttonDashboard.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                e -> imageView.setImage(imageList.get(6)));
+
+        buttonDashboard.addEventHandler(MouseEvent.MOUSE_EXITED,
+                e -> imageView.setImage(imageList.get(0)));
+
+        // button 7 over ons
+        buttonOverOns.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                e -> imageView.setImage(imageList.get(7)));
+
+        buttonOverOns.addEventHandler(MouseEvent.MOUSE_EXITED,
+                e -> imageView.setImage(imageList.get(0)));
     }
 
     @FXML
     public void goToLoginButtonPressed(javafx.event.ActionEvent event) throws Exception {
-        // load scenes
-        Parent loginScene = FXMLLoader.load(getClass().getResource("../scenes/loginScene.fxml"));
-        loginScene.getStylesheets().add("css/global.css");
+        sceneController.changeScene(event, getClass(), "loginScene");
+    }
 
-        // getting window
-        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        primaryStage.setScene(new Scene(loginScene, primaryStage.getMaxWidth(), primaryStage.getHeight()));
-        primaryStage.show();
-
-
+    @FXML
+    public void goToRegisterButtonPressed(javafx.event.ActionEvent event) throws Exception {
+        sceneController.createRegisterStage(event, getClass());
     }
 
     private void addAllImagesToList(ArrayList imageList) {
 
-        ArrayList<String> pathList = new ArrayList<>();
-        pathList.add("fitness_1");
-        pathList.add("fitness_2");
-        pathList.add("fitness_3");
-        pathList.add("fitness_4");
-        pathList.add("fitness_5");
-        pathList.add("pool_1");
-        pathList.add("pool_2");
-        pathList.add("spa_1");
+        ArrayList<String> pathList = new ArrayList<>(8);
+        // standaard image
+        pathList.add("standaard");
+        pathList.add("onzeSportschool");
+        pathList.add("abonnementen");
+        pathList.add("faciliteiten");
+        pathList.add("groepslessen");
+        pathList.add("ICTVoorzieningen");
+        pathList.add("dashboard");
+        pathList.add("overOns");
 
         for (String path : pathList) {
             addImageToList(imageList, "src/pictures/" + path + ".jpg");
@@ -96,5 +132,4 @@ public class mainController implements Initializable {
         Image image = new Image(file.toURI().toString());
         imageList.add(image);
     }
-
 }

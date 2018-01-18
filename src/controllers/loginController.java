@@ -23,13 +23,18 @@ public class loginController {
             // TODO go to the next page
         }
         else {
-            System.out.println(accountCorrect);
+            showErrorPopup("An error occurred when logging in" ,accountCorrect);
         }
     }
 
     @FXML
-    public void goToHomeButtonPressed(){
+    public void goToHomeButtonPressed(javafx.event.ActionEvent event) throws Exception {
+        sceneController.changeScene(event, getClass(), "mainScene");
+    }
 
+    @FXML
+    public void goToRegisterButtonPressed() {
+        
     }
 
     /*
@@ -62,6 +67,7 @@ public class loginController {
     private void emptyPasswdField() {
         passwdField.setText(null);
     }
+    */
 
     private void showErrorPopup(String errorHeader, String errorMessage) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -78,7 +84,7 @@ public class loginController {
         alert.setContentText(infoMessage);
 
         alert.showAndWait();
-    }*/
+    }
 
 
 

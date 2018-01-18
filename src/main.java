@@ -29,13 +29,6 @@ public class main extends Application {
         primaryStage.show();
     }
 
-    public static int getwindowWidth() {
-        return windowWidth;
-    }
-
-    public static int getwindowHeight() {
-        return windowHeight;
-    }
 
     public static void main(String[] args) {
         launch(args);

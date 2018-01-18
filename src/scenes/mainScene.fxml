@@ -29,7 +29,7 @@
                      </HBox.margin></HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="640.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" text="Lid worden" />
+                        <Button fx:id="goToRegisterButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToRegisterButtonPressed" text="Lid worden" />
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />
@@ -43,9 +43,9 @@
    <center>
       <HBox fx:id="imageViewPanel">
          <children>
-            <ImageView fx:id="imageView" fitHeight="570.0" fitWidth="980.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
+            <ImageView fx:id="imageView" fitHeight="550.0" fitWidth="980.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
                <image>
-                  <Image url="@../pictures/fitness_1.jpg" />
+                  <Image url="@../pictures/standaard.jpg" />
                </image>
             </ImageView>
          </children>
@@ -60,12 +60,12 @@
                </VBox.margin>
                <children>
                   <Button fx:id="buttonSportschool" mnemonicParsing="false" text="Onze sportschool" />
-                  <Button fx:id="buttonSportschool1" mnemonicParsing="false" text="Abonnementen" />
-                  <Button mnemonicParsing="false" text="Faciliteiten" />
-                  <Button mnemonicParsing="false" text="Groepslessen" />
-                  <Button mnemonicParsing="false" text="ICT voorzieningen" />
-                  <Button mnemonicParsing="false" text="Dashboard" />
-                  <Button mnemonicParsing="false" text="Over ons" />
+                  <Button fx:id="buttonAbonnementen" mnemonicParsing="false" text="Abonnementen" />
+                  <Button fx:id="buttonFaciliteiten" mnemonicParsing="false" text="Faciliteiten" />
+                  <Button fx:id="buttonGroepslessen" mnemonicParsing="false" text="Groepslessen" />
+                  <Button fx:id="buttonICTVoorzieningen" mnemonicParsing="false" text="ICT voorzieningen" />
+                  <Button fx:id="buttonDashboard" mnemonicParsing="false" text="Dashboard" />
+                  <Button fx:id="buttonOverOns" mnemonicParsing="false" text="Over ons" />
                </children></VBox>
          </children>
       </VBox>
@@ -86,7 +86,7 @@
                      </children>
                   </HBox>
                </children></HBox>
-            <HBox fx:id="menuBlackAccent" minHeight="10.0" />
+            <HBox fx:id="menuBlackAccent" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0" />
          </children>
       </VBox>
    </bottom>
