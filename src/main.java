@@ -23,7 +23,7 @@ public class main extends Application {
         mainScene.getStylesheets().add("css/global.css");
 
         // creating window
-        primaryStage.setTitle("Account management");
+        primaryStage.setTitle("Benno's sportschool - Menu");
         primaryStage.setScene(new Scene(mainScene, windowWidth, windowHeight));
         primaryStage.setResizable(false);
         primaryStage.show();

@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class sceneController {
@@ -25,10 +26,21 @@ public class sceneController {
     public static void createRegisterStage(javafx.event.ActionEvent event, Class c) throws Exception{
         // creates the stage for the register scene
         Parent registerScene;
-        registerScene = FXMLLoader.load(c.getResource("../scenes/mainScene.fxml"));
+        registerScene = FXMLLoader.load(c.getResource("../scenes/registerScene.fxml"));
+        registerScene.getStylesheets().add("css/register.css");
+
+        // create new stage/window
         Stage registerStage = new Stage();
-        registerStage.setTitle("Benno's sportschool - register now!");
-        registerStage.setScene(new Scene(registerScene, 450, 450));
+        registerStage.setTitle("Benno's sportschool - Maak een account aan!");
+        registerStage.setScene(new Scene(registerScene, 450, 670));
+        registerStage.setResizable(false);
+
+        // sets always on top and unable to click on the other stage
+        registerStage.initModality(Modality.APPLICATION_MODAL);
         registerStage.show();
+    }
+
+    public static void closeStage(Stage stage){
+        stage.close();
     }
 }

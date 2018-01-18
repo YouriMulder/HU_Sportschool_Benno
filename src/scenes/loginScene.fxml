@@ -65,7 +65,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="640.0">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" text="Lid worden" />
+                              <Button fx:id="goToRegisterButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToRegisterButtonPressed" text="Lid worden" />
                            </children>
                            <HBox.margin>
                               <Insets right="10.0" />

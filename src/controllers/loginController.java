@@ -33,41 +33,11 @@ public class loginController {
     }
 
     @FXML
-    public void goToRegisterButtonPressed() {
-        
+    public void goToRegisterButtonPressed(javafx.event.ActionEvent event) throws Exception{
+        sceneController.createRegisterStage(event, getClass());
     }
 
-    /*
-    // TODO move to the register page
-    public void registerButtonPressed() {
-        // TODO make register function in the database
-        // TODO make register message show up as popup
-        // TODO passwords are in database without capitals
-        String usernameInput = usernameField.getText().toLowerCase();
-        String passwdInput = passwdField.getText().toLowerCase();
 
-        // registers account and returns a message based on the error or success
-        String registerMessage = databaseManagement.registerAccount(usernameInput, passwdInput);
-        if (registerMessage.equals("Account created successfully")) {
-            emptyLoginFields();
-            showPopup("Your account is successfully created");
-        } else {
-            emptyPasswdField();
-            showErrorPopup("OOPS, something went wrong", registerMessage);
-        }
-
-        System.out.println(registerMessage);
-    }
-
-    private void emptyLoginFields() {
-        usernameField.setText(null);
-        passwdField.setText(null);
-    }
-
-    private void emptyPasswdField() {
-        passwdField.setText(null);
-    }
-    */
 
     private void showErrorPopup(String errorHeader, String errorMessage) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

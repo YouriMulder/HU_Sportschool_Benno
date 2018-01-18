@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold.ttf');
+}
+
+#menuAccent {
+    -fx-background-color: #002f6c;
+}
+
+#menuBlackAccent {
+    -fx-background-color: black;
+}
+
+#menuBar {
+    -fx-background-color: #01579b;
+}
+
+#navBar {
+    -fx-background-color: #4f83cc;
+}
+
+#footerBar {
+    -fx-background-color: #4f83cc;
+}
+
+#imageViewPanel {
+    -fx-background-color: #000000;
+}
+
+#bedrijfsnaamBox {
+    -fx-background-color: #01579b;
+}
+
+#bedrijfsnaam {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 40px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#imageViewAvatar {
+    -fx-padding: 10;
+    -fx-background-color: firebrick;
+    -fx-background-radius: 5;
+}
+
+.label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px;
+}

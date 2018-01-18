@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.registerController">
+   <center>
+      <VBox fx:id="navBar" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
+                     <children>
+                        <ImageView fx:id="imageViewAvatar" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pictures/avatar/AvatarSample.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
+               <children>
+                  <HBox maxWidth="1.7976931348623157E308">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label alignment="CENTER" text="Username" />
+                           </children>
+                        </HBox>
+                        <VBox fx:id="normalButton" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
+                           <children>
+                              <Button fx:id="checkAvailableButton" maxWidth="300.0" mnemonicParsing="false" onAction="#checkAvailableButtonPressed" text="Check username" />
+                           </children>
+                           <padding>
+                              <Insets left="130.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <TextField id="usernameField" fx:id="usernameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" promptText="GvandeWeert" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label alignment="CENTER" text="E-mail" />
+                     </children>
+                  </HBox>
+                  <TextField id="usernameField" fx:id="usernameField1" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" promptText="Gerritvandeweert@hotmail.com" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label alignment="CENTER" text="Password" />
+                     </children>
+                  </HBox>
+                  <PasswordField fx:id="passwdField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" promptText="**********" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label alignment="CENTER" text="Re-enter password" />
+                     </children>
+                  </HBox>
+                  <PasswordField fx:id="passwdField11" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" promptText="**********" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
+               <children>
+                  <HBox spacing="20.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label alignment="CENTER" text="Voornaam" />
+                                 </children>
+                              </HBox>
+                              <TextField id="usernameField" fx:id="usernameField111" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Gerrit" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label alignment="CENTER" />
+                                 </children>
+                              </HBox>
+                              <TextField id="usernameField" fx:id="usernameField1112" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" promptText="van de" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label alignment="CENTER" text="Achternaam" />
+                                 </children>
+                              </HBox>
+                              <TextField id="usernameField" fx:id="usernameField1111" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Weert" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
+               <children>
+                  <HBox spacing="20.0">
+                     <children>
+                        <VBox>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label alignment="CENTER" text="Postcode" />
+                                 </children>
+                              </HBox>
+                              <TextField id="usernameField" fx:id="usernameField11" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="3584 BJ" />
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label alignment="CENTER" text="Huisnummer" />
+                                 </children>
+                              </HBox>
+                              <TextField id="usernameField" fx:id="usernameField111" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="200" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonPressed" text="Maak account aan">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="menuAccent" maxHeight="55.0" prefHeight="55.0">
+               <children>
+                  <HBox maxHeight="-Infinity" prefHeight="10.0" />
+                  <HBox fx:id="menuBar" maxHeight="45.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="640.0">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="640.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></HBox>
+   </top>
+   <bottom>
+      <HBox fx:id="menuBlackAccent" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="11.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
