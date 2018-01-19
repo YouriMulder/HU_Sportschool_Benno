@@ -101,41 +101,6 @@ public class databaseManagement {
         return checkMessage;
     }
 
-    // checks if username is at least 5 characters and doesn't contain any ordinary characters
-    private static boolean checkUsernameValid(String usernameInput) {
-        // TODO add regex function
-
-        return (usernameInput.length() > 4);
-        }
-
-    // checks is the password is at least longer than 10 characters and contains a symbol, digit, lowercase and uppercase
-    private static boolean checkPasswdValid(String passwdInput) {
-        // TODO add regex function
-
-        return (passwdInput.length() > 9);
-    }
-
-    // handles input and creates a account
-    public static String registerAccount(String usernameInput, String passwdInput) {
-        System.out.println(!checkUsernameValid(usernameInput));
-        // checks if the user input is valid (password and username)
-        if (!checkUsernameValid(usernameInput)) {
-
-            return "Username invalid";
-        } else if (!checkPasswdValid(passwdInput)) {
-            return "Password invalid";
-        } else if (checkUsernameUsed(usernameInput)) {
-            return "Username is used by another user";
-        }
-
-        try {
-            System.out.println(createDatabaseAccount(usernameInput, passwdInput));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "Account created successfully";
-    }
-
 
     // checks if the username is in the database
     private static boolean checkUsernameUsed(String usernameInput) {

@@ -35,7 +35,10 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label alignment="CENTER" text="Username" />
+                              <Label alignment="CENTER" text="Username">
+                                 <tooltip>
+                                    <Tooltip text="Empty Tooltip" />
+                                 </tooltip></Label>
                            </children>
                         </HBox>
                         <VBox fx:id="normalButton" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
@@ -58,7 +61,7 @@
                         <Label alignment="CENTER" text="E-mail" />
                      </children>
                   </HBox>
-                  <TextField id="usernameField" fx:id="usernameField1" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" promptText="Gerritvandeweert@hotmail.com" />
+                  <TextField id="usernameField" fx:id="eMailField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" promptText="Gerritvandeweert@hotmail.com" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
@@ -78,7 +81,7 @@
                         <Label alignment="CENTER" text="Re-enter password" />
                      </children>
                   </HBox>
-                  <PasswordField fx:id="passwdField11" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" promptText="**********" />
+                  <PasswordField fx:id="reEnterField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" promptText="**********" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
@@ -92,7 +95,7 @@
                                     <Label alignment="CENTER" text="Voornaam" />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="usernameField111" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Gerrit" />
+                              <TextField id="usernameField" fx:id="voornaamField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Gerrit" />
                            </children>
                         </VBox>
                         <VBox>
@@ -102,7 +105,7 @@
                                     <Label alignment="CENTER" />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="usernameField1112" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" promptText="van de" />
+                              <TextField id="usernameField" fx:id="tussenvoegselField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" promptText="van de" />
                            </children>
                         </VBox>
                         <VBox>
@@ -112,7 +115,7 @@
                                     <Label alignment="CENTER" text="Achternaam" />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="usernameField1111" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Weert" />
+                              <TextField id="usernameField" fx:id="achternaamField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Weert" />
                            </children>
                         </VBox>
                      </children>
@@ -130,7 +133,7 @@
                                     <Label alignment="CENTER" text="Postcode" />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="usernameField11" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="3584 BJ" />
+                              <TextField id="usernameField" fx:id="postcodeField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="3584 BJ" />
                            </children>
                         </VBox>
                         <VBox>
@@ -140,7 +143,7 @@
                                     <Label alignment="CENTER" text="Huisnummer" />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="usernameField111" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="200" />
+                              <TextField id="usernameField" fx:id="huisnummerField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="200" />
                            </children>
                         </VBox>
                      </children>
