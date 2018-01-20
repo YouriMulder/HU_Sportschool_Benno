@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -42,5 +43,22 @@ public class sceneController {
 
     public static void closeStage(Stage stage){
         stage.close();
+    }
+
+    public static void showErrorPopup(String errorHeader, String errorMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error dialog");
+        alert.setHeaderText(errorHeader);
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
+    }
+
+    public static void showPopup(String infoMessage) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(infoMessage);
+
+        alert.showAndWait();
     }
 }

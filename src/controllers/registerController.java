@@ -1,26 +1,32 @@
 package controllers;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class registerController {
 
-    @FXML
-    private Button registerButton;
+    // all the buttons
 
-    @FXML
-    private Button checkAvailableButton;
+    // info buttons
+    public Button usernameInfo;
+    public Button eMailInfo;
+    public Button passwdInfo;
+    public Button reEnterInfo;
+    public Button voorwaardenInfo;
 
+
+    public Button registerButton;
+    public Button checkAvailableButton;
+
+    // all the input fields
     public TextField usernameField;
     public TextField eMailField;
     public PasswordField passwdField;
@@ -30,21 +36,29 @@ public class registerController {
     public TextField achternaamField;
     public TextField postcodeField;
     public TextField huisnummerField;
+    public RadioButton termsButton;
 
     public void checkAvailableButtonPressed() {
         // TODO check username is in database and valid
     }
 
-    public void registerButtonPressed(ActionEvent e) {
+    public void registerButtonPressed(ActionEvent a) {
         // TODO add the register in database function
-        System.out.println(checkUserInput());
-
-        // closes stage if account is registered
-        /*
-        final Node source = (Node) e.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-        */
+        String checkUserInput = checkUserInput();
+        if (!checkUserInput.equals("Input correct")) {
+            sceneController.showErrorPopup("An error occurred while trying to register", checkUserInput);
+        } else {
+            // closes stage if account is registered
+            try{
+                // TODO create account in database
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            sceneController.showPopup("Account created successfully");
+            final Node source = (Node) a.getSource();
+            final Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+        }
     }
 
 
@@ -81,7 +95,42 @@ public class registerController {
     }
     */
 
+    // information buttons
+    // show terms and conditions
+    public void usernameInfoPressed() throws Exception {
+        String content;
+        // the full path is needed. Otherwise the program won't run
+        content = new String(Files.readAllBytes(Paths.get("src/registerInfo/usernameInfo.txt")));
+        sceneController.showPopup(content);
+    }
 
+    public void eMailInfoPressed() throws Exception {
+        String content;
+        // the full path is needed. Otherwise the program won't run
+        content = new String(Files.readAllBytes(Paths.get("src/registerInfo/eMailInfo.txt")));
+        sceneController.showPopup(content);
+    }
+
+    public void passwdInfoPressed() throws Exception {
+        String content;
+        // the full path is needed. Otherwise the program won't run
+        content = new String(Files.readAllBytes(Paths.get("src/registerInfo/passwdInfo.txt")));
+        sceneController.showPopup(content);
+    }
+
+    public void reEnterInfoPressed() throws Exception {
+        String content;
+        // the full path is needed. Otherwise the program won't run
+        content = new String(Files.readAllBytes(Paths.get("src/registerInfo/reEnterInfo.txt")));
+        sceneController.showPopup(content);
+    }
+
+    public void voorwaardenInfoPressed() throws Exception {
+        String content;
+        // the full path is needed. Otherwise the program won't run
+        content = new String(Files.readAllBytes(Paths.get("src/terms/terms.txt")));
+        sceneController.showPopup(content);
+    }
 
     // field getters
     private String getUsernameField() {
@@ -139,7 +188,7 @@ public class registerController {
 
         // username: only digits or alphabetic min length 5 max 30.
         // special characters allowed: !@#$%
-        if (!username.matches("^[a-zA-Z0-9!@#$%]{4,30}$")) {
+        if (!username.matches("^[a-zA-Z0-9!@#$%-_]{4,30}$")) {
             return "Incorrect username";
         }
 
@@ -151,38 +200,42 @@ public class registerController {
 
         // username: only digits or alphabetic min length 5 max 30
         // special characters allowed: !@#$%
-        if (!passwd.matches("^[a-zA-Z0-9!@#$%]{4,30}$")) {
-            return "Incorrect password";
+        if (!passwd.matches("^[a-zA-Z0-9!@#$%-_]{4,30}$")) {
+            return "Fout in password veld";
         }
 
         // password is not the same as re-enter
         if (!passwd.equals(reEnter)) {
-            return "Passwords doesn't match";
+            return "Password zijn niet hetzelfde";
         }
 
         // voornaam: only alphabetic, lowercase or capital
         if (!voornaam.matches("[a-zA-Z /-]{3,30}")) {
-            return "Invalid voornaam";
+            return "Fout in voornaam veld";
         }
 
         // tussenvoegsel: only alphabetic, lowercase or capital
         if (!tussenvoegsel.matches("[a-zA-Z /-]{0,10}")) {
-            return "Invalid tussenvoegsel";
+            return "Fout in tussenvoegsel veld";
         }
 
         // achternaam: only alphabetic, lowercase or capital
         if (!achternaam.matches("[a-zA-Z /-]{3,30}")) {
-            return "Invalid achternaam";
+            return "Fout in achternaam veld";
         }
 
         // checks postal code to dutch standards
         if (!postcode.matches("^[1-9][0-9]{3} ?(?!sa|sd|ss|SA|SD|SS)[A-Za-z]{2}$")) {
-            return "invalid postcode";
+            return "Fout in postcode veld";
         }
 
         // huisnummer: starts with digits and may end with alphabetic
         if (!huisnummer.matches("^\\d+/?\\d*[a-zA-Z]?(?<!/)$")) {
-            return "Invalid huisnummer";
+            return "Fout in huisnummer veld";
+        }
+
+        if (!termsButton.isSelected()) {
+            return "Ga akkoord met de voorwaarden als je een account wil aanmaken";
         }
 
         return result;

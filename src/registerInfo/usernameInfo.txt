@@ -1,0 +1,7 @@
+username:
+     a-z
+     A-Z            - Hoofdletters
+     0-9            - Alle cijfers
+     !@#$%-_        - Speciale karakters
+     minimale lengte is 4 karakters.
+     maximale lengte 30 karakters.

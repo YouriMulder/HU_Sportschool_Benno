@@ -1,0 +1,3 @@
+Re-enter password:
+    Zorg ervoor dat je password twee maal hetzelfde wordt ingevuld.
+    Indien je niet hetzelfde password gebruikt zal er een error message in jouw beeld verschijnen.

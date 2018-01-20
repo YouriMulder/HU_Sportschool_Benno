@@ -23,7 +23,7 @@ public class loginController {
             // TODO go to the next page
         }
         else {
-            showErrorPopup("An error occurred when logging in" ,accountCorrect);
+            sceneController.showErrorPopup("An error occurred when logging in" ,accountCorrect);
         }
     }
 
@@ -36,26 +36,5 @@ public class loginController {
     public void goToRegisterButtonPressed(javafx.event.ActionEvent event) throws Exception{
         sceneController.createRegisterStage(event, getClass());
     }
-
-
-
-    private void showErrorPopup(String errorHeader, String errorMessage) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error dialog");
-        alert.setHeaderText(errorHeader);
-        alert.setContentText(errorMessage);
-        alert.showAndWait();
-    }
-
-    private void showPopup(String infoMessage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information dialog");
-        alert.setHeaderText(null);
-        alert.setContentText(infoMessage);
-
-        alert.showAndWait();
-    }
-
-
 
 }
