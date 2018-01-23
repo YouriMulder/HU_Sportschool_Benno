@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
@@ -11,10 +12,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.collections.FXCollections?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.registerController">
    <center>
-      <VBox fx:id="navBar" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="navBar" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER">
                <children>
@@ -53,7 +55,7 @@
                   </HBox>
                   <HBox fx:id="fieldBox">
                      <children>
-                        <TextField id="usernameField" fx:id="usernameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="273.0" promptText="GvandeWeert" />
+                        <TextField fx:id="usernameField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="273.0" promptText="GvandeWeert" />
                         <Button fx:id="usernameInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#usernameInfoPressed" prefHeight="25.0" prefWidth="27.0" text="?" />
                      </children>
                   </HBox>
@@ -68,7 +70,7 @@
                   </HBox>
                   <HBox fx:id="fieldBox">
                      <children>
-                        <TextField id="usernameField" fx:id="eMailField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="273.0" promptText="Gerritvandeweert@hotmail.com" />
+                        <TextField fx:id="eMailField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="273.0" promptText="Gerritvandeweert@hotmail.com" />
                         <Button fx:id="eMailInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#eMailInfoPressed" prefHeight="25.0" prefWidth="27.0" text="?">
                            <HBox.margin>
                               <Insets />
@@ -120,14 +122,14 @@
                                     <HBox />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="voornaamField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Gerrit" />
+                              <TextField fx:id="voornaamField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Gerrit" />
                            </children>
                         </VBox>
                         <VBox>
                            <children>
                               <HBox>
                                  <children>
-                                    <TextField id="usernameField" fx:id="tussenvoegselField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" promptText="van de">
+                                    <TextField fx:id="tussenvoegselField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" promptText="van de">
                                        <HBox.margin>
                                           <Insets top="18.0" />
                                        </HBox.margin>
@@ -143,7 +145,7 @@
                                     <Label alignment="CENTER" text="Achternaam" />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="achternaamField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Weert" />
+                              <TextField fx:id="achternaamField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" promptText="Weert" />
                            </children>
                         </VBox>
                      </children>
@@ -161,7 +163,7 @@
                                     <Label alignment="CENTER" text="Postcode" />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="postcodeField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="3584 BJ" />
+                              <TextField fx:id="postcodeField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="3584 BJ" />
                            </children>
                         </VBox>
                         <VBox>
@@ -171,9 +173,29 @@
                                     <Label alignment="CENTER" text="Huisnummer" />
                                  </children>
                               </HBox>
-                              <TextField id="usernameField" fx:id="huisnummerField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="200" />
+                              <TextField fx:id="huisnummerField" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="200" />
                            </children>
                         </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="5.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER" text="Geslacht" />
+                        <ChoiceBox fx:id="genderBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0">
+                           <HBox.margin>
+                              <Insets left="85.0" />
+                           </HBox.margin>
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Man" />
+                                 <String fx:value="Vrouw" />
+                              </FXCollections>
+                           </items>
+                        </ChoiceBox>
                      </children>
                   </HBox>
                </children>

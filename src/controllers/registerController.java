@@ -1,11 +1,9 @@
 package controllers;
 
+import database.databaseManagement;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.nio.file.Files;
@@ -37,23 +35,50 @@ public class registerController {
     public TextField postcodeField;
     public TextField huisnummerField;
     public RadioButton termsButton;
+    public ChoiceBox genderBox;
 
-    public void checkAvailableButtonPressed() {
-        // TODO check username is in database and valid
+    public void checkAvailableButtonPressed() throws Exception {
+        String username = usernameField.getText();
+
+        Boolean usernameValid = checkUsernameValid(username);
+        if (usernameValid) {
+            Boolean usernameExists = databaseManagement.checkUsernameUsed(username);
+            if (usernameExists) {
+                // username exists
+                sceneController.showPopup("De ingevoerde username is al in gebruik.");
+            } else {
+                // username doesn't exists
+                sceneController.showPopup("De ingevoerde username is nog niet gebruikt.");
+            }
+        } else {
+            // username is not valid
+            sceneController.showPopup("Username voldoet niet aan de eisen.\nDruk op de ? om te kunnen zien wat de eisen zijn.");
+        }
     }
 
-    public void registerButtonPressed(ActionEvent a) {
+    public void registerButtonPressed(ActionEvent a) throws Exception {
         // TODO add the register in database function
         String checkUserInput = checkUserInput();
         if (!checkUserInput.equals("Input correct")) {
             sceneController.showErrorPopup("An error occurred while trying to register", checkUserInput);
         } else {
+            // all the input fields
+            final String username = getUsernameField();
+            final String passwd = getpasswdField();
+            final String eMail = getEMailField();
+            final String voornaam = getVoornaamField();
+            final String tussenvoegsel = getTussenvoegselField();
+            final String achternaam = getAchternaamField();
+            final String postcode = getPostcodeField();
+            final String huisnummer = getHuisnummerField();
+            final String geslacht = getGenderBox();
+
+            // TODO create account in database
+            databaseManagement.registerAccount(username, passwd, eMail, termsButton.isSelected());
+            int account_id = databaseManagement.getAccountID(username);
+            databaseManagement.registerCustomer(voornaam, tussenvoegsel, achternaam, geslacht, postcode, huisnummer, account_id);
+            databaseManagement.updateAccount_klantID(account_id);
             // closes stage if account is registered
-            try{
-                // TODO create account in database
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             sceneController.showPopup("Account created successfully");
             final Node source = (Node) a.getSource();
             final Stage stage = (Stage) source.getScene().getWindow();
@@ -169,7 +194,15 @@ public class registerController {
         return huisnummerField.getText();
     }
 
-    private String checkUserInput() {
+    private String getGenderBox() {
+        return genderBox.getValue().toString();
+    }
+
+    private boolean checkUsernameValid(String usernameInput) {
+        return usernameInput.matches("^[a-zA-Z0-9!@#$%-_]{4,30}$");
+    }
+
+    private String checkUserInput() throws Exception {
         String result = "Input correct";
 
         // all the input fields
@@ -190,6 +223,11 @@ public class registerController {
         // special characters allowed: !@#$%
         if (!username.matches("^[a-zA-Z0-9!@#$%-_]{4,30}$")) {
             return "Incorrect username";
+        }
+
+        // checks if username is available
+        if (databaseManagement.checkUsernameUsed(username)) {
+            return "Username is al in gebruik";
         }
 
         // checks E-mail using regex

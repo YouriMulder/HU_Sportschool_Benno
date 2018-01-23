@@ -11,19 +11,19 @@ public class loginController {
     public PasswordField passwdField;
 
     @FXML
-    public void loginButtonPressed() {
-        String usernameInput = usernameField.getText().toLowerCase();
-        String passwdInput = passwdField.getText().toLowerCase();
+    public void loginButtonPressed() throws Exception{
+        String usernameInput = usernameField.getText();
+        String passwdInput = passwdField.getText();
 
         // checks if user input can be found in the database
         String accountCorrect = databaseManagement.checkLoginData(usernameInput, passwdInput);
 
-        if (accountCorrect.equals("Login details correct")) {
+        if (accountCorrect.equals("Login gegevens correct")) {
             System.out.println("Logged in as " + usernameInput + "");
             // TODO go to the next page
         }
         else {
-            sceneController.showErrorPopup("An error occurred when logging in" ,accountCorrect);
+            sceneController.showErrorPopup("Er is een fout opgetreden tijdens het inloggen" , accountCorrect);
         }
     }
 

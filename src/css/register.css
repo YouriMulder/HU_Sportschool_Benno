@@ -44,6 +44,23 @@
     -fx-background-radius: 5;
 }
 
+.choice-box{
+    -fx-background-color: #01579b;
+    -fx-mark-color: white;
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px;
+}
+
+.choice-box .menu-item {
+    -fx-border-width: 0;
+    -fx-background-color: #01579b;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #000000;
+}
+
+
 #fieldBox .button {
     -fx-background-color: none;
     -fx-text-fill: #FFFFFF;
