@@ -7,6 +7,7 @@ package database;
 import javax.sql.rowset.CachedRowSet;
 import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class databaseManagement {
 
@@ -59,6 +60,8 @@ public class databaseManagement {
         return result;
     }
 
+
+    // registration functions
     public static boolean checkUsernameUsed(String usernameInput) throws Exception{
         // setting the username to lower case, so it won't be case sensitive
         usernameInput = usernameInput.toLowerCase();
@@ -158,6 +161,87 @@ public class databaseManagement {
         disconnectDatabase(conn);
     }
 
+    // get tables
+    public static ArrayList<String> getKlantenTable(String usernameInput, int klantID, int accountID, int abonnementID) throws Exception {
+        ArrayList<String> result = new ArrayList<>(10);
 
-    public static void main(String args[]) {}
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+        if (!usernameInput.equals("")) {
+            statement = conn.prepareStatement("SELECT * FROM klanten WHERE account_id=(SELECT account_id FROM accounts WHERE username ='" + usernameInput + "')");
+        } else if (klantID != 0) {
+            statement = conn.prepareStatement("SELECT * FROM klanten WHERE klant_id='" + klantID + "'");
+        } else if (accountID != 0) {
+            statement = conn.prepareStatement("SELECT * FROM klanten WHERE account_id='" + accountID + "'");
+        } else if (abonnementID != 0) {
+            statement = conn.prepareStatement("SELECT * FROM klanten WHERE abonnement_id='" + abonnementID + "'");
+        }
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            String klant_id = rs.getString("klant_id");
+            String voornaam = rs.getString("voornaam");
+            String tussenvoegsel = rs.getString("tussenvoegsel");
+            String achternaam = rs.getString("achternaam");
+            String geslacht = rs.getString("geslacht");
+            String postcode = rs.getString("postcode");
+            String huisnummer = rs.getString("huisnummer");
+            String account_id = rs.getString("account_id");
+            String abonnement_id = rs.getString("abonnement_id");
+
+            result.add(klant_id);
+            result.add(voornaam);
+            result.add(tussenvoegsel);
+            result.add(achternaam);
+            result.add(geslacht);
+            result.add(postcode);
+            result.add(huisnummer);
+            result.add(account_id);
+            result.add(abonnement_id);
+        }
+
+        disconnectDatabase(conn);
+        return result;
+    }
+
+    public static ArrayList<ArrayList> getSessiesTable(String usernameInput, int accountID) throws Exception {
+        ArrayList<ArrayList> result = new ArrayList<>();
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+        if (!usernameInput.equals("")) {
+            statement = conn.prepareStatement("SELECT * FROM sessies WHERE account_id=(SELECT account_id FROM accounts WHERE username ='" + usernameInput + "')");
+        } else if (accountID != 0) {
+            statement = conn.prepareStatement("SELECT * FROM sessies WHERE account_id='" + accountID + "'");
+        }
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            ArrayList<String> innerList = new ArrayList<>();
+            String sessie_id = rs.getString("sessie_id");
+            String incheck_tijd = rs.getString("incheck_tijd");
+            String uitcheck_tijd = rs.getString("uitcheck_tijd");
+            String sessie_duur = rs.getString("sessie_duur");
+            String tag_id = rs.getString("tag_id");
+            String account_id = rs.getString("account_id");
+
+            innerList.add(sessie_id);
+            innerList.add(incheck_tijd);
+            innerList.add(uitcheck_tijd);
+            innerList.add(sessie_duur);
+            innerList.add(tag_id);
+            innerList.add(account_id);
+
+            result.add(innerList);
+        }
+
+        disconnectDatabase(conn);
+        return result;
+    }
+
+    public static void main(String args[]) throws Exception {
+        System.out.println(getSessiesTable("Youri", 0));
+    }
 }

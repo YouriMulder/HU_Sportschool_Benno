@@ -32,16 +32,57 @@
 }
 
 #bedrijfsnaam {
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: white;
     -fx-font-family: "Roboto";
     -fx-font-size: 40px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
-#imageViewAvatar {
-    -fx-padding: 10;
-    -fx-background-color: firebrick;
-    -fx-background-radius: 5;
+#profilePictureBox {
+    -fx-background-radius: 180%;
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-radius: 180%;
+    -fx-border-color: white;
+}
+
+#dashboardBox {
+    -fx-background-color: #01579b;
+    -fx-border-width: 2px;
+    -fx-border-color: #002f6c;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+
+}
+
+#dashboardTitleBox {
+    -fx-background-color: #002f6c;
+}
+
+#dashboardBigTitle {
+    -fx-font-size: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.list-view {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+}
+
+.list-cell:filled {
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:hover {
+    -fx-text-fill: black;
+}
+
+.list-cell:even {
+    -fx-background-color: #01579b;
+}
+
+.list-cell:odd {
+    -fx-background-color: #015790;
 }
 
 .label {
@@ -85,15 +126,4 @@
 #navBar .button:pressed {
     -fx-border-width: 0 0 2 0;
     -fx-border-color: white;
-}
-
-#normalButton .button{
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
 }

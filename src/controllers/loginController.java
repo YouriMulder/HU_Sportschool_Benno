@@ -11,7 +11,7 @@ public class loginController {
     public PasswordField passwdField;
 
     @FXML
-    public void loginButtonPressed() throws Exception{
+    public void loginButtonPressed(javafx.event.ActionEvent event) throws Exception{
         String usernameInput = usernameField.getText();
         String passwdInput = passwdField.getText();
 
@@ -20,7 +20,8 @@ public class loginController {
 
         if (accountCorrect.equals("Login gegevens correct")) {
             System.out.println("Logged in as " + usernameInput + "");
-            // TODO go to the next page
+            loginDetails.setCurrentUsername(usernameInput);
+            sceneController.changeScene(event, getClass(), "dashboardScene");
         }
         else {
             sceneController.showErrorPopup("Er is een fout opgetreden tijdens het inloggen" , accountCorrect);
