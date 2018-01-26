@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class databaseManagement {
 
-    private static String databaseAddress = "jdbc:mysql://localhost/sportschool";
+    private static String databaseAddress = "jdbc:mysql://192.168.1.27:3306/sportschool";
     private static String databaseUser = "root";
     private static String databasePassword = "MySQL123";
 
@@ -189,6 +189,7 @@ public class databaseManagement {
             String huisnummer = rs.getString("huisnummer");
             String account_id = rs.getString("account_id");
             String abonnement_id = rs.getString("abonnement_id");
+            String begeleider_id = rs.getString("begeleider_id");
 
             result.add(klant_id);
             result.add(voornaam);
@@ -199,6 +200,7 @@ public class databaseManagement {
             result.add(huisnummer);
             result.add(account_id);
             result.add(abonnement_id);
+            result.add(begeleider_id);
         }
 
         disconnectDatabase(conn);

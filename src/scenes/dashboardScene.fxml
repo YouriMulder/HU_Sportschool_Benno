@@ -104,32 +104,30 @@
                                     </VBox>
                                     <VBox prefWidth="100.0">
                                        <children>
-                                          <Label text="Youri" />
-                                          <Label text="Man" />
-                                          <Label text="6721 BT" />
-                                          <Label text="18A" />
+                                          <Label fx:id="personalNameLabel" text="Youri" />
+                                          <Label fx:id="personalGenderLabel" text="Man" />
+                                          <Label fx:id="personalPostalCodeLabel" text="6721 BT" />
+                                          <Label fx:id="personalHouseNumberLabel" text="18A" />
                                        </children>
                                     </VBox>
                                     <VBox prefWidth="50.0" />
                                     <VBox prefWidth="125.0">
                                        <children>
                                           <Label text="Jouw begeleider:" />
-                                          <Label text="Geslacht" />
-                                          <Label text="Postcode" />
-                                          <Label text="Huisnummer" />
+                                          <Label text="Rol:" />
+                                          <Label text="Specialistatie:" />
                                        </children>
                                     </VBox>
-                                    <VBox prefWidth="100.0">
+                                    <VBox>
                                        <children>
-                                          <Label text="Jan-Dirk" />
-                                          <Label text="Geslacht" />
-                                          <Label text="Postcode" />
-                                          <Label text="Huisnummer" />
+                                          <Label fx:id="personalTrainerNameLabel" text="Benno" />
+                                          <Label fx:id="personalTrainerRoleLabel" text="Eigenaar" />
+                                          <Label fx:id="personalTrainerSLabel" prefHeight="17.0" prefWidth="134.0" text="Strategisch analist" />
                                        </children>
                                     </VBox>
                                  </children>
                                  <padding>
-                                    <Insets left="50.0" right="50.0" />
+                                    <Insets right="50.0" />
                                  </padding>
                               </HBox>
                            </children>

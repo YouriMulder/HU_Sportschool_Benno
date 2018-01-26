@@ -12,12 +12,28 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class dashboardController {
-    private String username = loginDetails.getCurrentUsername();
 
-    public ListView<String> sessiesList;
-    public Label usernameLabel;
+    // scene buttons and labels
+    private String username = loginDetails.getCurrentUsername();
     public Button goToHomeButton;
+    public Label usernameLabel;
     public ImageView profilePicture;
+
+    // personal details box
+    // personal details
+    public Label personalNameLabel;
+    public Label personalGenderLabel;
+    public Label personalPostalCodeLabel;
+    public Label personalHouseNumberLabel;
+
+    // personal trainer details
+    public Label personalTrainerNameLabel;
+    public Label personalTrainerRoleLabel;
+    public Label personalTrainerSLabel;
+
+    // session box
+    public ListView<String> sessiesList;
+
 
     @FXML
     public void initialize() throws Exception {
@@ -27,6 +43,9 @@ public class dashboardController {
         File file = new File("src/pictures/avatar/AvatarSample.png");
         Image profileImage = new Image(file.toURI().toString());
         profilePicture.setImage(profileImage);
+
+        // set personal details
+        setPersonalDetailsBox(username);
 
         // puts all the sport sessions into list
         setSessionsBox(username);
@@ -67,6 +86,37 @@ public class dashboardController {
         } else {
             items.add("Je hebt afgelopen tijd niet gesport bij onze sportschool.");
         }
+    }
+
+    public void setPersonalDetailsBox(String username) throws Exception {
+        ArrayList<String> klantenTable = new ArrayList();
+        klantenTable = databaseManagement.getKlantenTable(username, 0, 0, 0);
+
+        String klant_id = klantenTable.get(0);
+        String voornaam = klantenTable.get(1);
+        String tussenvoegsel = klantenTable.get(2);
+        String achternaam = klantenTable.get(3);
+        String geslacht = klantenTable.get(4);
+        String postcode = klantenTable.get(5);
+        String huisnummer = klantenTable.get(6);
+        String account_id = klantenTable.get(7);
+        String abonnement_id = klantenTable.get(8);
+        String begeleider_id = klantenTable.get(9);
+
+        // personal details
+        // checks if user has a infix
+        if(tussenvoegsel == null) {
+            personalNameLabel.setText(voornaam + " " + achternaam);
+        }
+        else {
+            personalNameLabel.setText(voornaam + " " + tussenvoegsel + " " + achternaam);
+        }
+
+        personalGenderLabel.setText(geslacht);
+        personalPostalCodeLabel.setText(postcode);
+        personalHouseNumberLabel.setText(huisnummer);
+
+        // personal trainer details
     }
 
 }
