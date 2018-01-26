@@ -25,7 +25,7 @@ public class loginDetails {
     }
 
     public static void setKlantenInformation() throws Exception{
-        klanten = databaseManagement.getKlantenTable(getCurrentUsername(),0,0,0);
+        klanten = databaseManagement.getKlantenRow(getCurrentUsername(),0,0,0);
     }
 
     public static ArrayList<String> getKlantenInformation() {

@@ -78,100 +78,137 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </VBox>
-            <VBox spacing="20.0">
+            <HBox>
                <children>
-                  <VBox fx:id="dashboardBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="620.0">
+                  <VBox spacing="20.0">
                      <children>
-                        <HBox fx:id="dashboardTitleBox" alignment="TOP_CENTER">
+                        <VBox fx:id="dashboardBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="620.0">
                            <children>
-                              <Label text="Jouw gegevens" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <VBox>
-                           <children>
-                              <HBox spacing="10.0">
+                              <HBox fx:id="dashboardTitleBox" alignment="TOP_CENTER">
                                  <children>
-                                    <VBox prefWidth="100.0">
-                                       <children>
-                                          <Label text="Naam:" />
-                                          <Label text="Geslacht:" />
-                                          <Label text="Postcode:" />
-                                          <Label text="Huisnummer:" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="100.0">
-                                       <children>
-                                          <Label fx:id="personalNameLabel" text="Youri" />
-                                          <Label fx:id="personalGenderLabel" text="Man" />
-                                          <Label fx:id="personalPostalCodeLabel" text="6721 BT" />
-                                          <Label fx:id="personalHouseNumberLabel" text="18A" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="50.0" />
-                                    <VBox prefWidth="125.0">
-                                       <children>
-                                          <Label text="Jouw begeleider:" />
-                                          <Label text="Rol:" />
-                                          <Label text="Specialistatie:" />
-                                          <Label text="Begeleider ID:" />
-                                       </children>
-                                    </VBox>
-                                    <VBox>
-                                       <children>
-                                          <Label fx:id="personalTNameLabel" text="Benno" />
-                                          <Label fx:id="personalTRoleLabel" text="Eigenaar" />
-                                          <Label fx:id="personalTSLabel" prefHeight="17.0" prefWidth="134.0" text="Strategisch analist" />
-                                          <Label fx:id="personalTIdLabel" prefHeight="17.0" prefWidth="134.0" text="Strategisch analist" />
-                                       </children>
-                                    </VBox>
+                                    <Label text="Jouw gegevens" />
                                  </children>
-                                 <padding>
-                                    <Insets right="50.0" />
-                                 </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
                               </HBox>
+                              <VBox>
+                                 <children>
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <VBox prefWidth="100.0">
+                                             <children>
+                                                <Label text="Naam:" />
+                                                <Label text="Geslacht:" />
+                                                <Label text="Postcode:" />
+                                                <Label text="Huisnummer:" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefWidth="100.0">
+                                             <children>
+                                                <Label fx:id="personalNameLabel" text="Onbekend" />
+                                                <Label fx:id="personalGenderLabel" text="Onbekend" />
+                                                <Label fx:id="personalPostalCodeLabel" text="Onbekend" />
+                                                <Label fx:id="personalHouseNumberLabel" text="Onbekend" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefWidth="50.0" />
+                                          <VBox prefWidth="125.0">
+                                             <children>
+                                                <Label text="Jouw begeleider:" />
+                                                <Label text="Rol:" />
+                                                <Label text="Specialistatie:" />
+                                                <Label text="Begeleider ID:" />
+                                             </children>
+                                          </VBox>
+                                          <VBox>
+                                             <children>
+                                                <Label fx:id="personalTNameLabel" text="Onbekend" />
+                                                <Label fx:id="personalTRoleLabel" text="Onbekend" />
+                                                <Label fx:id="personalTSLabel" prefHeight="17.0" prefWidth="134.0" text="Onbekend" />
+                                                <Label fx:id="personalTIdLabel" prefHeight="17.0" prefWidth="134.0" text="Onbekend" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets right="50.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </VBox>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox fx:id="dashboardBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="620.0">
-                     <children>
-                        <HBox fx:id="dashboardTitleBox" alignment="TOP_CENTER">
+                        <VBox fx:id="dashboardBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="620.0">
                            <children>
-                              <Label text="Sessies" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <VBox>
-                           <children>
-                              <HBox alignment="TOP_CENTER">
+                              <HBox fx:id="dashboardTitleBox" alignment="TOP_CENTER">
                                  <children>
-                                    <ListView fx:id="sessiesList" prefWidth="620.0">
+                                    <Label text="Sessies" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <VBox>
+                                 <children>
+                                    <HBox alignment="TOP_CENTER">
+                                       <children>
+                                          <ListView fx:id="sessiesList" prefWidth="620.0">
                                     </ListView>
+                                       </children>
+                                    </HBox>
                                  </children>
-                              </HBox>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </VBox>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </VBox>
                      </children>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <VBox fx:id="dashboardBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="620.0">
+                           <children>
+                              <HBox fx:id="dashboardTitleBox" alignment="TOP_CENTER">
+                                 <children>
+                                    <Label text="Kies jouw persoonlijke begeleider" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <VBox>
+                                 <children>
+                                    <HBox alignment="TOP_CENTER">
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <ListView fx:id="begeleidersList" prefHeight="100.0" prefWidth="620.0" />
+                                                <Button fx:id="veranderBegeleiderButton" mnemonicParsing="false" onAction="#veranderBegeleiderButtonClicked" text="Button" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
                   </VBox>
                </children>
-            </VBox>
+            </HBox>
          </children>
       </VBox>
    </center>

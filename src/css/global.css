@@ -3,6 +3,11 @@
     src: url('../fonts/Roboto-Bold.ttf');
 }
 
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('../fonts/RobotoMono-Bold.ttf');
+}
+
 #menuAccent {
     -fx-background-color: #002f6c;
 }
@@ -64,8 +69,8 @@
 }
 
 .list-view {
-    -fx-font-family: "Roboto";
-    -fx-font-size: 12px;
+    -fx-font-family: "Roboto Mono";
+    -fx-font-size: 10px;
     -fx-text-fill: white;
 }
 
@@ -83,6 +88,11 @@
 
 .list-cell:odd {
     -fx-background-color: #015790;
+}
+
+.list-cell:selected {
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }
 
 .label {

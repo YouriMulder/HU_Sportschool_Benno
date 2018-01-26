@@ -1,12 +1,18 @@
 package controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.util.Optional;
 
 public class sceneController {
     /*
@@ -47,7 +53,7 @@ public class sceneController {
 
     public static void showErrorPopup(String errorHeader, String errorMessage) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error dialog");
+        alert.setTitle("Error popup");
         alert.setHeaderText(errorHeader);
         alert.setContentText(errorMessage);
         alert.showAndWait();
@@ -55,10 +61,24 @@ public class sceneController {
 
     public static void showPopup(String infoMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information dialog");
+        alert.setTitle("Information popup");
         alert.setHeaderText(null);
         alert.setContentText(infoMessage);
 
         alert.showAndWait();
+    }
+
+    public static boolean showConfirmationPopup(String confirmMessage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation popup");
+        alert.setHeaderText(null);
+        alert.setContentText(confirmMessage);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            return true;
+        } else {
+           return false;
+        }
     }
 }

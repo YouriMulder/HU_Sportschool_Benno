@@ -162,7 +162,7 @@ public class databaseManagement {
     }
 
     // get tables
-    public static ArrayList<String> getKlantenTable(String usernameInput, int klantID, int accountID, int abonnementID) throws Exception {
+    public static ArrayList<String> getKlantenRow(String usernameInput, int klantID, int accountID, int abonnementID) throws Exception {
         ArrayList<String> result = new ArrayList<>(10);
 
         Connection conn = getDatabaseConnection();
@@ -201,15 +201,13 @@ public class databaseManagement {
             result.add(account_id);
             result.add(abonnement_id);
             result.add(begeleider_id);
-            System.out.println(begeleider_id);
         }
-
 
         disconnectDatabase(conn);
         return result;
     }
 
-    public static ArrayList<ArrayList> getSessiesTable(String usernameInput, int accountID) throws Exception {
+    public static ArrayList<ArrayList> getSessiesRows(String usernameInput, int accountID) throws Exception {
         ArrayList<ArrayList> result = new ArrayList<>();
 
         Connection conn = getDatabaseConnection();
@@ -237,7 +235,6 @@ public class databaseManagement {
             innerList.add(sessie_duur);
             innerList.add(tag_id);
             innerList.add(account_id);
-
             result.add(innerList);
         }
 
@@ -245,7 +242,7 @@ public class databaseManagement {
         return result;
     }
 
-    public static ArrayList<String> getBegeleidersTable(String begeleiderID) throws Exception {
+    public static ArrayList<String> getBegeleidersRow(String begeleiderID) throws Exception {
         ArrayList<String> result = new ArrayList<>(10);
 
         Connection conn = getDatabaseConnection();
@@ -282,7 +279,57 @@ public class databaseManagement {
         return result;
     }
 
-    public static void main(String args[]) throws Exception {
-        System.out.println(getBegeleidersTable("1"));
+    public static ArrayList<ArrayList> getBegeleidersTable() throws Exception {
+        ArrayList<ArrayList> result = new ArrayList<>();
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+
+        statement = conn.prepareStatement("SELECT * FROM begeleiders;");
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            ArrayList<String> innerList = new ArrayList<>();
+            String begeleider_id = rs.getString("begeleider_id");
+            String voornaam = rs.getString("voornaam");
+            String tussenvoegsel = rs.getString("tussenvoegsel");
+            String achternaam = rs.getString("achternaam");
+            String geslacht = rs.getString("geslacht");
+            String rol = rs.getString("rol");
+            String specialisatie = rs.getString("specialisatie");
+            String contract_start = rs.getString("contract_start_datum");
+            String contract_eind = rs.getString("contract_eind_datum");
+
+
+            innerList.add(begeleider_id);
+            innerList.add(voornaam);
+            innerList.add(tussenvoegsel);
+            innerList.add(achternaam);
+            innerList.add(geslacht);
+            innerList.add(rol);
+            innerList.add(specialisatie);
+            innerList.add(contract_start);
+            innerList.add(contract_eind);
+            result.add(innerList);
+        }
+
+        disconnectDatabase(conn);
+        return result;
     }
+
+    public static void updateKlantPersonalTrainer(String usernameInput, int klantID, int begeleiderID) throws Exception {
+        String querry;
+        if (!usernameInput.equals("")) {
+            querry = "UPDATE klanten set begeleider_id = '" + begeleiderID + "' WHERE klant_id =( SELECT klant_id FROM accounts WHERE username ='" + usernameInput + "');";
+        } else {
+            querry = "UPDATE klanten set begeleider_id = '" + begeleiderID + "' WHERE klant_id ='" + klantID + "';";
+        }
+        Connection conn = getDatabaseConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(querry);
+        preparedStatement.executeUpdate();
+        disconnectDatabase(conn);
+    }
+
+    public static void main(String args[]) throws Exception { }
 }
