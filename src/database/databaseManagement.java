@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class databaseManagement {
 
-    private static String databaseAddress = "jdbc:mysql://192.168.1.27:3306/sportschool";
+    private static String databaseAddress = "jdbc:mysql://localhost/sportschool";
     private static String databaseUser = "root";
     private static String databasePassword = "MySQL123";
 
@@ -201,7 +201,9 @@ public class databaseManagement {
             result.add(account_id);
             result.add(abonnement_id);
             result.add(begeleider_id);
+            System.out.println(begeleider_id);
         }
+
 
         disconnectDatabase(conn);
         return result;
@@ -243,7 +245,44 @@ public class databaseManagement {
         return result;
     }
 
+    public static ArrayList<String> getBegeleidersTable(String begeleiderID) throws Exception {
+        ArrayList<String> result = new ArrayList<>(10);
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+
+        statement = conn.prepareStatement("SELECT * FROM begeleiders WHERE begeleider_id='" + begeleiderID + "';");
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            String begeleider_id = rs.getString("begeleider_id");
+            String voornaam = rs.getString("voornaam");
+            String tussenvoegsel = rs.getString("tussenvoegsel");
+            String achternaam = rs.getString("achternaam");
+            String geslacht = rs.getString("geslacht");
+            String rol = rs.getString("rol");
+            String specialisatie = rs.getString("specialisatie");
+            String contract_start = rs.getString("contract_start_datum");
+            String contract_eind = rs.getString("contract_eind_datum");
+
+
+            result.add(begeleider_id);
+            result.add(voornaam);
+            result.add(tussenvoegsel);
+            result.add(achternaam);
+            result.add(geslacht);
+            result.add(rol);
+            result.add(specialisatie);
+            result.add(contract_start);
+            result.add(contract_eind);
+        }
+
+        disconnectDatabase(conn);
+        return result;
+    }
+
     public static void main(String args[]) throws Exception {
-        System.out.println(getSessiesTable("Youri", 0));
+        System.out.println(getBegeleidersTable("1"));
     }
 }

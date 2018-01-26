@@ -116,13 +116,15 @@
                                           <Label text="Jouw begeleider:" />
                                           <Label text="Rol:" />
                                           <Label text="Specialistatie:" />
+                                          <Label text="Begeleider ID:" />
                                        </children>
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <Label fx:id="personalTrainerNameLabel" text="Benno" />
-                                          <Label fx:id="personalTrainerRoleLabel" text="Eigenaar" />
-                                          <Label fx:id="personalTrainerSLabel" prefHeight="17.0" prefWidth="134.0" text="Strategisch analist" />
+                                          <Label fx:id="personalTNameLabel" text="Benno" />
+                                          <Label fx:id="personalTRoleLabel" text="Eigenaar" />
+                                          <Label fx:id="personalTSLabel" prefHeight="17.0" prefWidth="134.0" text="Strategisch analist" />
+                                          <Label fx:id="personalTIdLabel" prefHeight="17.0" prefWidth="134.0" text="Strategisch analist" />
                                        </children>
                                     </VBox>
                                  </children>

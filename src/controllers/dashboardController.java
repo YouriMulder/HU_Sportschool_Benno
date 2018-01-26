@@ -27,9 +27,10 @@ public class dashboardController {
     public Label personalHouseNumberLabel;
 
     // personal trainer details
-    public Label personalTrainerNameLabel;
-    public Label personalTrainerRoleLabel;
-    public Label personalTrainerSLabel;
+    public Label personalTNameLabel;
+    public Label personalTRoleLabel;
+    public Label personalTSLabel;
+    public Label personalTIdLabel;
 
     // session box
     public ListView<String> sessiesList;
@@ -103,6 +104,21 @@ public class dashboardController {
         String abonnement_id = klantenTable.get(8);
         String begeleider_id = klantenTable.get(9);
 
+        ArrayList<String> begeleidersTable = new ArrayList();
+        System.out.println(begeleider_id);
+        begeleidersTable = databaseManagement.getBegeleidersTable(begeleider_id);
+        System.out.println(begeleidersTable);
+
+        String personalTBegeleider_id = begeleidersTable.get(0);
+        String personalTVoornaam = begeleidersTable.get(1);
+        String personalTTussenvoegsel = begeleidersTable.get(2);
+        String personalTAchternaam = begeleidersTable.get(3);
+        String personalTGeslacht = begeleidersTable.get(4);
+        String personalTRol = begeleidersTable.get(5);
+        String personalTSpecialisatie = begeleidersTable.get(6);
+        String personalTContractStart = begeleidersTable.get(7);
+        String PersonalTConcractEind = begeleidersTable.get(8);
+
         // personal details
         // checks if user has a infix
         if(tussenvoegsel == null) {
@@ -117,6 +133,16 @@ public class dashboardController {
         personalHouseNumberLabel.setText(huisnummer);
 
         // personal trainer details
+        if(tussenvoegsel == null) {
+            personalNameLabel.setText(personalTVoornaam + " " + personalTAchternaam);
+        }
+        else {
+            personalNameLabel.setText(personalTVoornaam + " " + personalTTussenvoegsel + " " + personalTAchternaam);
+        }
+
+        personalTRoleLabel.setText(personalTRol);
+        personalTSLabel.setText(personalTSpecialisatie);
+        personalTIdLabel.setText(personalTBegeleider_id);
     }
 
 }
