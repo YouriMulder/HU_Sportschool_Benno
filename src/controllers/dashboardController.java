@@ -42,6 +42,17 @@ public class dashboardController {
     public ListView<String> begeleidersList;
     public Button veranderBegeleiderButton;
 
+    // abonnements box
+    public Label abonnementIDLabel;
+    public Label abonnementNameLabel;
+    public Label abonnementPriceLabel;
+    public Label abonnementDiscriptionLabel;
+    public Label abonnementStartDateLabel;
+    public Label abonnementEndDateLabel;
+    public Label abonnementDiscountLabel;
+    public Button veranderAbonnementButton;
+    // TODO auto set the label to the right String
+
     @FXML
     public void initialize() throws Exception {
         usernameLabel.setText(username);
@@ -51,7 +62,7 @@ public class dashboardController {
         Image profileImage = new Image(file.toURI().toString());
         profilePicture.setImage(profileImage);
 
-        // set personal details
+        // set personal details in the personal details box
         setPersonalDetailsBox(username);
 
         // puts all the sport sessions into the sessions box
@@ -60,7 +71,8 @@ public class dashboardController {
         // puts all the personal trainers into the personal trainers box
         setPersonalTrainersBox();
 
-
+        // set all the subscription details into the subscription box
+        setSubscriptionBox();
     }
 
     @FXML
@@ -185,8 +197,6 @@ public class dashboardController {
                     personalTrainerName = personalTVoornaam + " " + personalTTussenvoegsel + " " + personalTAchternaam;
                 }
 
-
-
                 String personalTrainerString = String.format("%-2s %-26s %-16s %-16s %-16s", personalTBegeleider_id, "Naam: " + personalTrainerName, "Geslacht: " + personalTGeslacht, "Rol: " + personalTRol, "Specialisatie: " + personalTSpecialisatie);
                 items.add(personalTrainerString);
 
@@ -199,16 +209,62 @@ public class dashboardController {
     // change your personal trainer
     public void veranderBegeleiderButtonClicked() throws Exception {
         String chosenPersonalTrainer = begeleidersList.getSelectionModel().getSelectedItems().toString();
+        // checks if user selected a row
+        if (!chosenPersonalTrainer.equals("[]")) {
+            String[] chosenPersonalTrainerList = chosenPersonalTrainer.split(" ");
+            String personalTrainerID = chosenPersonalTrainerList[0].replace("[", "");
 
-        String[] chosenPersonalTrainerList = chosenPersonalTrainer.split(" ");
-        String personalTrainerID = chosenPersonalTrainerList[0].replace("[", "");
-
-
-
-        boolean confirmed = sceneController.showConfirmationPopup("Weet je zeker dat je een nieuwe begeleider wil?");
-        if (confirmed) {
-            databaseManagement.updateKlantPersonalTrainer(username, 0, Integer.parseInt(personalTrainerID));
-            setPersonalDetailsBox(username);
+            // checks if user really wanted to change his/her personal trainer
+            boolean confirmed = sceneController.showConfirmationPopup("Weet je zeker dat je een nieuwe begeleider wil?");
+            if (confirmed) {
+                databaseManagement.updateKlantPersonalTrainer(username, 0, Integer.parseInt(personalTrainerID));
+                setPersonalDetailsBox(username);
+            }
+        // if user didn't select a row show a popup message
+        } else {
+            sceneController.showPopup("Je hebt geen begeleider geselecteerd. Kies volgende keer een geldige begeleider.");
         }
+    }
+
+    // Sets the subscription box labels
+    public void setSubscriptionBox() throws Exception {
+
+        ArrayList<String> customerTable = new ArrayList();
+        ArrayList<String> subscriptionTable = new ArrayList();
+        ArrayList<String> defaultSubscriptionsTable = new ArrayList();
+        customerTable = databaseManagement.getKlantenRow(username, 0, 0, 0);
+
+        // Checks if you're in the database as customer
+        if (!customerTable.isEmpty()) {
+            // customerTable variables
+            String klant_id = customerTable.get(0);
+            String account_id = customerTable.get(7);
+            String abonnement_id = customerTable.get(8);
+            String begeleider_id = customerTable.get(9);
+
+            if (abonnement_id == null) {
+                System.out.println("The user doesn't have a subscription");
+                return;
+            }
+            subscriptionTable = databaseManagement.getSubscriptionRow(Integer.parseInt(abonnement_id));
+            // checks if you have a subscription to the fitness centre
+            if (!subscriptionTable.isEmpty()) {
+                // Subscription variables
+                abonnement_id = subscriptionTable.get(0);
+                String akkoord_voorwaarden = subscriptionTable.get(1);
+                String abonnement_start_datum = subscriptionTable.get(2);
+                String abonnement_eind_datum = subscriptionTable.get(3);
+                String abonnementsvorm_id = subscriptionTable.get(4);
+                account_id = subscriptionTable.get(5);
+
+                abonnementIDLabel.setText(abonnement_id);
+                abonnementStartDateLabel.setText(abonnement_start_datum);
+                abonnementEndDateLabel.setText(abonnement_eind_datum);
+            }
+        }
+    }
+
+    public void veranderAbonnementButtonClicked(javafx.event.ActionEvent event) throws Exception {
+        sceneController.changeScene(event, getClass(), "abonnementScene");
     }
 }

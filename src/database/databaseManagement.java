@@ -226,14 +226,14 @@ public class databaseManagement {
             String incheck_tijd = rs.getString("incheck_tijd");
             String uitcheck_tijd = rs.getString("uitcheck_tijd");
             String sessie_duur = rs.getString("sessie_duur");
-            String tag_id = rs.getString("tag_id");
+            String tag = rs.getString("tag");
             String account_id = rs.getString("account_id");
 
             innerList.add(sessie_id);
             innerList.add(incheck_tijd);
             innerList.add(uitcheck_tijd);
             innerList.add(sessie_duur);
-            innerList.add(tag_id);
+            innerList.add(tag);
             innerList.add(account_id);
             result.add(innerList);
         }
@@ -314,6 +314,8 @@ public class databaseManagement {
             result.add(innerList);
         }
 
+
+
         disconnectDatabase(conn);
         return result;
     }
@@ -329,6 +331,152 @@ public class databaseManagement {
         PreparedStatement preparedStatement = conn.prepareStatement(querry);
         preparedStatement.executeUpdate();
         disconnectDatabase(conn);
+    }
+
+    public static ArrayList<String> getSubscriptionRow(int abonnementID) throws Exception {
+        ArrayList<String> result = new ArrayList<>(10);
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+
+        statement = conn.prepareStatement("SELECT * FROM abonnementen WHERE abonnement_id='" + abonnementID + "';");
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            String abonnement_id = rs.getString("abonnement_id");
+            String akkoord_voorwaarden = rs.getString("akkoord_voorwaarden");
+            String abonnement_start_datum = rs.getString("abonnement_start_datum");
+            String abonnement_eind_datum = rs.getString("abonnement_eind_datum");
+            String abonnementsvorm_id = rs.getString("abonnementsvorm_id");
+            String account_id = rs.getString("account_id");
+
+
+            result.add(abonnement_id);
+            result.add(akkoord_voorwaarden);
+            result.add(abonnement_start_datum);
+            result.add(abonnement_eind_datum);
+            result.add(abonnementsvorm_id);
+            result.add(account_id);
+        }
+        System.out.println(result);
+        disconnectDatabase(conn);
+        return result;
+    }
+
+    public static ArrayList<ArrayList> getAbonnementsvormenTable() throws Exception {
+        ArrayList<ArrayList> result = new ArrayList<>();
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+
+        statement = conn.prepareStatement("SELECT * FROM abonnementsvormen");
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            ArrayList<String> innerList = new ArrayList<>();
+            String abonnementsvorm_id = rs.getString("abonnementsvorm_id");
+            String abonnementsnaam = rs.getString("abonnementsnaam");
+            String beschrijving = rs.getString("beschrijving");
+            String prijs = rs.getString("prijs");
+
+            innerList.add(abonnementsvorm_id);
+            innerList.add(abonnementsnaam);
+            innerList.add(beschrijving);
+            innerList.add(prijs);
+
+            result.add(innerList);
+        }
+
+        disconnectDatabase(conn);
+        return result;
+    }
+
+    public static void insertSubscription(String usernameInput, int abonnementsvormID) throws Exception {
+        System.out.println("Adding subscription to user");
+        // adding abonnement to abonnementen table
+        String querry;
+        querry = "INSERT INTO abonnementen (akkoord_voorwaarden, abonnement_start_datum, abonnement_eind_datum, abonnementsvorm_id, account_id)" +
+                "VALUES(1, NOW(), DATE_ADD(NOW(), INTERVAL 1 YEAR), " + abonnementsvormID +", (SELECT account_id FROM accounts WHERE username='" + usernameInput +"'));";
+        Connection conn = getDatabaseConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(querry);
+        preparedStatement.executeUpdate();
+        disconnectDatabase(conn);
+        System.out.println("added abonnement to abonnementen table");
+
+        // updates abonnement_id to the klanten table
+        querry = "UPDATE klanten set abonnement_id = (SELECT abonnement_id FROM abonnementen WHERE account_id = (SELECT account_id FROM accounts WHERE username='" + usernameInput +"')) WHERE account_id = (SELECT account_id FROM accounts WHERE username='" + usernameInput + "');";
+        conn = getDatabaseConnection();
+        preparedStatement = conn.prepareStatement(querry);
+        preparedStatement.executeUpdate();
+        disconnectDatabase(conn);
+        System.out.println("Abonnement_id updated in the klanten table");
+    }
+
+    public static boolean checkSubscriptionExists(String username, int abonnementID) throws Exception {
+        System.out.println("Checking if user has a subscription");
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+        System.out.println(username);
+        if (!username.equals("")) {
+            statement = conn.prepareStatement("SELECT * FROM abonnementen WHERE account_id = (SELECT account_id FROM accounts WHERE username='" + username + "')");
+        } else {
+            statement = conn.prepareStatement("SELECT * FROM abonnementen WHERE abonnement_id ='"+ abonnementID + "'");
+        }
+        ResultSet rs = statement.executeQuery();
+
+        if (rs.next()) {
+            disconnectDatabase(conn);
+            return true;
+        } else {
+            disconnectDatabase(conn);
+            return false;
+        }
+    }
+
+    public static void removeSubscriptionRow(String username) throws Exception{
+        System.out.println("Deleting subscription");
+        // adding abonnement to abonnementen table
+        String querry;
+        querry = "UPDATE klanten set abonnement_id = NULL WHERE account_id = (SELECT account_id FROM accounts WHERE username='" + username+ "');";
+        Connection conn = getDatabaseConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(querry);
+        preparedStatement.executeUpdate();
+        disconnectDatabase(conn);
+
+        querry = "DELETE FROM abonnementen WHERE account_id = (SELECT account_id FROM accounts WHERE username = '" + username + "');";
+        conn = getDatabaseConnection();
+        preparedStatement = conn.prepareStatement(querry);
+        preparedStatement.executeUpdate();
+        disconnectDatabase(conn);
+        System.out.println("Deleted subscription");
+    }
+
+    public static ArrayList<String> getAbonnementsvormRow(String abonnementsvormID) throws Exception {
+        ArrayList<String> result = new ArrayList<>();
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+
+        statement = conn.prepareStatement("SELECT * FROM abonnementsvorm WHERE abonnementsvorm='" + abonnementsvormID + "';");
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            String abonnementsvorm_id = rs.getString("abonnementsvorm_id");
+            String abonnementsnaam = rs.getString("abonnementsnaam");
+            String beschrijving = rs.getString("beschrijving");
+            String prijs = rs.getString("prijs");
+
+            result.add(abonnementsvorm_id);
+            result.add(abonnementsnaam);
+            result.add(beschrijving);
+            result.add(prijs);
+        }
+
+        disconnectDatabase(conn);
+        return result;
     }
 
     public static void main(String args[]) throws Exception { }

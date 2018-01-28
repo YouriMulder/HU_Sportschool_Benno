@@ -5,6 +5,9 @@ import database.databaseManagement;
 import java.util.ArrayList;
 
 public class loginDetails {
+    /* This class is used for keeping track of the current username/user
+        When de user logs in the String username == the current user
+    */
     // all the tables in arraylist
     private static ArrayList<String> klanten;
 
