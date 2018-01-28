@@ -314,8 +314,6 @@ public class databaseManagement {
             result.add(innerList);
         }
 
-
-
         disconnectDatabase(conn);
         return result;
     }
@@ -418,7 +416,6 @@ public class databaseManagement {
         System.out.println("Checking if user has a subscription");
         Connection conn = getDatabaseConnection();
         PreparedStatement statement = conn.prepareStatement("");
-        System.out.println(username);
         if (!username.equals("")) {
             statement = conn.prepareStatement("SELECT * FROM abonnementen WHERE account_id = (SELECT account_id FROM accounts WHERE username='" + username + "')");
         } else {
@@ -459,7 +456,7 @@ public class databaseManagement {
         Connection conn = getDatabaseConnection();
         PreparedStatement statement = conn.prepareStatement("");
 
-        statement = conn.prepareStatement("SELECT * FROM abonnementsvorm WHERE abonnementsvorm='" + abonnementsvormID + "';");
+        statement = conn.prepareStatement("SELECT * FROM abonnementsvormen WHERE abonnementsvorm_id='" + abonnementsvormID + "';");
 
         ResultSet rs = statement.executeQuery();
 
@@ -477,6 +474,69 @@ public class databaseManagement {
 
         disconnectDatabase(conn);
         return result;
+    }
+
+    public static boolean checkIBANExists(String IBAN) throws Exception {
+        System.out.println("Checking IBAN is registered in database");
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+        statement = conn.prepareStatement("SELECT * FROM betaal_gegevens WHERE IBAN = '" + IBAN + "'");
+
+        ResultSet rs = statement.executeQuery();
+
+        if (rs.next()) {
+            System.out.println("IBAN already exists");
+            disconnectDatabase(conn);
+            return true;
+        } else {
+            System.out.println("IBAN doesn't exists yet");
+            disconnectDatabase(conn);
+            return false;
+        }
+    }
+
+    public static void insertIBAN(String IBAN, String username) throws Exception {
+        String querry;
+        // only inserts the IBAN when it isn't in the database
+        if (!checkIBANExists(IBAN)) {
+            System.out.println("Inserting IBAN into database");
+            // querry to insert IBAN into bank_gegevens
+            querry = "INSERT INTO betaal_gegevens(IBAN)" +
+                    "VALUES ('" + IBAN + "')";
+
+            Connection conn = getDatabaseConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(querry);
+            preparedStatement.executeUpdate();
+            disconnectDatabase(conn);
+        }
+
+        System.out.println("Updating betaal_gegevens_id");
+        // querry to update customer betaal_gegevens_id
+        querry =  "UPDATE klanten SET betaal_gegevens_id = (SELECT betaal_gegevens_id FROM betaal_gegevens WHERE IBAN = '" + IBAN + "') WHERE account_id = (SELECT account_id FROM accounts WHERE username='" + username + "')";
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(querry);
+        preparedStatement.executeUpdate();
+        disconnectDatabase(conn);
+        System.out.println("betaal_gegevens updated");
+    }
+
+    public static String getIBAN(String username) throws Exception {
+        System.out.println("getting IBAN");
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+        statement = conn.prepareStatement("SELECT IBAN FROM betaal_gegevens WHERE betaal_gegevens_id = (SELECT betaal_gegevens_id FROM klanten WHERE account_id = (SELECT account_id FROM accounts WHERE username = '" + username +"'))");
+
+        ResultSet rs = statement.executeQuery();
+
+        if (rs.next()) {
+            String IBAN = rs.getString("IBAN");
+            disconnectDatabase(conn);
+            return IBAN;
+        }
+
+        disconnectDatabase(conn);
+        return "";
     }
 
     public static void main(String args[]) throws Exception { }

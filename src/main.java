@@ -17,7 +17,7 @@ public class main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         // load scenes
-        Parent mainScene = FXMLLoader.load(getClass().getResource("scenes/mainScene.fxml"));
+        Parent mainScene = FXMLLoader.load(getClass().getResource("scenes/loginScene.fxml"));
 
         // load css
         mainScene.getStylesheets().add("css/global.css");

@@ -49,13 +49,15 @@ public class dashboardController {
     public Label abonnementDiscriptionLabel;
     public Label abonnementStartDateLabel;
     public Label abonnementEndDateLabel;
-    public Label abonnementDiscountLabel;
+    public Label abonnementIBANLabel;
     public Button veranderAbonnementButton;
     // TODO auto set the label to the right String
 
     @FXML
     public void initialize() throws Exception {
         usernameLabel.setText(username);
+        abonnementDiscriptionLabel.setWrapText(true);
+        abonnementIBANLabel.setWrapText(true);
         loginDetails.init();
 
         File file = new File("src/pictures/avatar/AvatarSample.png");
@@ -90,7 +92,7 @@ public class dashboardController {
 
                 // date of the day you did sports
                 String date = (String) sessie.get(1);
-                date = date.substring(0, 9);
+                date = date.substring(0, 10);
 
                 // starting time
                 String start_time = (String) sessie.get(1);
@@ -257,9 +259,31 @@ public class dashboardController {
                 String abonnementsvorm_id = subscriptionTable.get(4);
                 account_id = subscriptionTable.get(5);
 
+                String startDate = abonnement_start_datum.substring(0, 10);
+                String endDate = abonnement_eind_datum.substring(0, 10);
+
                 abonnementIDLabel.setText(abonnement_id);
-                abonnementStartDateLabel.setText(abonnement_start_datum);
-                abonnementEndDateLabel.setText(abonnement_eind_datum);
+                abonnementStartDateLabel.setText(startDate);
+                abonnementEndDateLabel.setText(endDate);
+
+                defaultSubscriptionsTable = databaseManagement.getAbonnementsvormRow(abonnementsvorm_id);
+
+                if (!defaultSubscriptionsTable.isEmpty()) {
+                    // Default subscription variables
+                    String abonnementsnaam = defaultSubscriptionsTable.get(1);
+                    String beschrijving = defaultSubscriptionsTable.get(2);
+                    String prijs = defaultSubscriptionsTable.get(3);
+
+                    abonnementNameLabel.setText(abonnementsnaam);
+                    abonnementDiscriptionLabel.setText(beschrijving);
+                    abonnementPriceLabel.setText(prijs);
+                }
+
+                if (databaseManagement.getIBAN(username) != null) {
+                    String IBAN = databaseManagement.getIBAN(username);
+                    System.out.println(IBAN);
+                    abonnementIBANLabel.setText(IBAN);
+                }
             }
         }
     }

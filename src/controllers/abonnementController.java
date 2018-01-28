@@ -67,7 +67,15 @@ public class abonnementController {
                     if (databaseManagement.checkSubscriptionExists(username, 0)) {
                         sceneController.showPopup("Beindig eerst je vorige abonnement voordat je een nieuwe afsluit.");
                     } else {
-                        databaseManagement.insertSubscription(username, Integer.parseInt(abonnementID));
+                        String IBAN = sceneController.showInputPopup("Om een nieuw abonnement af te sluiten hebben wij eerst uw IBAN nodig.", "Vul hier uw IBAN in:");
+                        System.out.println(IBAN);
+                        // checks if IBAN is valid
+                        if (IBAN.matches("^[a-zA-Z]{2}[0-9]{2} [a-zA-Z]{4} [0-9]{10}$")) {
+                            databaseManagement.insertIBAN(IBAN, username);
+                            databaseManagement.insertSubscription(username, Integer.parseInt(abonnementID));
+                        } else {
+
+                        }
                     }
                 }
             // if the header is selected

@@ -242,7 +242,7 @@
                                              <children>
                                                 <Label fx:id="abonnementStartDateLabel" text="Onbekend" />
                                                 <Label fx:id="abonnementEndDateLabel" text="Onbekend" />
-                                                <Label fx:id="abonnementDiscountLabel" text="Onbekend" />
+                                                <Label fx:id="abonnementIBANLabel" text="Onbekend" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -256,7 +256,7 @@
                                           </VBox>
                                           <VBox>
                                              <children>
-                                                <Label fx:id="abonnementDiscriptionLabel" layoutX="10.0" layoutY="10.0" prefWidth="150.0" text="Onbekend" />
+                                                <Label fx:id="abonnementDiscriptionLabel" layoutX="10.0" layoutY="10.0" text="Onbekend" />
                                              </children>
                                           </VBox>
                                        </children>
