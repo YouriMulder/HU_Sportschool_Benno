@@ -391,6 +391,37 @@ public class databaseManagement {
         return result;
     }
 
+    public static ArrayList<ArrayList> getPersonalAdviceTable(String username) throws Exception {
+        ArrayList<ArrayList> result = new ArrayList<>();
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+
+        statement = conn.prepareStatement("SELECT * FROM persoonlijk_advies WHERE klant_id = (SELECT klant_id FROM klanten where account_id = (SELECT account_id FROM accounts WHERE username = '" + username +"'));");
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            ArrayList<String> innerList = new ArrayList<>();
+            String persoonlijk_advies_id = rs.getString("persoonlijk_advies_id");
+            String onderwerp = rs.getString("onderwerp");
+            String advies = rs.getString("advies");
+            String klant_id = rs.getString("klant_id");
+            String begeleider_id = rs.getString("begeleider_id");
+
+            innerList.add(persoonlijk_advies_id);
+            innerList.add(onderwerp);
+            innerList.add(advies);
+            innerList.add(klant_id);
+            innerList.add(begeleider_id);
+
+            result.add(innerList);
+        }
+
+        disconnectDatabase(conn);
+        return result;
+    }
+
     public static void insertSubscription(String usernameInput, int abonnementsvormID) throws Exception {
         System.out.println("Adding subscription to user");
         // adding abonnement to abonnementen table
@@ -538,6 +569,7 @@ public class databaseManagement {
         disconnectDatabase(conn);
         return "";
     }
+
 
     public static void main(String args[]) throws Exception { }
 }

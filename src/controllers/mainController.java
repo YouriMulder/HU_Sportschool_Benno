@@ -25,7 +25,7 @@ public class mainController implements Initializable {
     public ImageView imageView;
 
     // navigation bar buttons
-    public Button buttonSportschool;
+    public Button buttonPersoonlijkAdvies;
     public Button buttonAbonnementen;
     public Button buttonFaciliteiten;
     public Button buttonGroepslessen;
@@ -50,10 +50,10 @@ public class mainController implements Initializable {
 
         // image handler
         // button 1 onze sportschool
-        buttonSportschool.addEventHandler(MouseEvent.MOUSE_ENTERED,
+        buttonPersoonlijkAdvies.addEventHandler(MouseEvent.MOUSE_ENTERED,
                 e -> imageView.setImage(imageList.get(1)));
 
-        buttonSportschool.addEventHandler(MouseEvent.MOUSE_EXITED,
+        buttonPersoonlijkAdvies.addEventHandler(MouseEvent.MOUSE_EXITED,
                 e -> imageView.setImage(imageList.get(0)));
 
         // button 2 abonnementen
@@ -114,7 +114,7 @@ public class mainController implements Initializable {
         ArrayList<String> pathList = new ArrayList<>(8);
         // standaard image
         pathList.add("standaard");
-        pathList.add("onzeSportschool");
+        pathList.add("persoonlijkAdvies");
         pathList.add("abonnementen");
         pathList.add("faciliteiten");
         pathList.add("groepslessen");

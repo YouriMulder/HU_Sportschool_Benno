@@ -59,7 +59,7 @@
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="buttonSportschool" mnemonicParsing="false" text="Onze sportschool" />
+                  <Button fx:id="buttonPersoonlijkAdvies" mnemonicParsing="false" text="Persoonlijk advies" />
                   <Button fx:id="buttonAbonnementen" mnemonicParsing="false" text="Abonnementen" />
                   <Button fx:id="buttonFaciliteiten" mnemonicParsing="false" text="Faciliteiten" />
                   <Button fx:id="buttonGroepslessen" mnemonicParsing="false" text="Groepslessen" />

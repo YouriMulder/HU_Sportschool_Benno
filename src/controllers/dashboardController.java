@@ -51,7 +51,9 @@ public class dashboardController {
     public Label abonnementEndDateLabel;
     public Label abonnementIBANLabel;
     public Button veranderAbonnementButton;
-    // TODO auto set the label to the right String
+
+    // personal advice box
+    public ListView<String> adviesList;
 
     @FXML
     public void initialize() throws Exception {
@@ -75,6 +77,9 @@ public class dashboardController {
 
         // set all the subscription details into the subscription box
         setSubscriptionBox();
+
+        // set all the personal advices into personal advice box
+        setPersonalAdviceBox();
     }
 
     @FXML
@@ -290,5 +295,44 @@ public class dashboardController {
 
     public void veranderAbonnementButtonClicked(javafx.event.ActionEvent event) throws Exception {
         sceneController.changeScene(event, getClass(), "abonnementScene");
+    }
+
+    // puts the personal advices in the personal advice box
+
+    private void setPersonalAdviceBox() throws Exception {
+
+        ArrayList<ArrayList> personalAdvices;
+        personalAdvices = databaseManagement.getPersonalAdviceTable(username);
+        ObservableList<String> items = adviesList.getItems();
+
+        if (!personalAdvices.isEmpty()) {
+            String mainString = String.format("%-2s %-20s %-16s %-16s %-30s", "ID", "Naam", "Specialisatie", "Onderwerp", "Advies");
+            items.add(mainString);
+            for (ArrayList personalAdvice : personalAdvices) {
+                ArrayList<String> begeleider;
+                String persoonlijk_advies_id = (String) personalAdvice.get(0);
+                String onderwerp = (String) personalAdvice.get(1);
+                String advies = (String) personalAdvice.get(2);
+                String klant_id = (String) personalAdvice.get(3);
+                String begeleider_id = (String) personalAdvice.get(4);
+
+                begeleider = databaseManagement.getBegeleidersRow(begeleider_id);
+                String begeleiderVoornaam = begeleider.get(1);
+                String begeleiderTussenvoegsel = begeleider.get(2);
+                String begeleiderAchternaam = begeleider.get(3);
+                String begeleiderSpecialisatie = begeleider.get(6);
+
+                String personalTrainerString;
+                if (begeleiderTussenvoegsel == null) {
+                    personalTrainerString = String.format("%-2s %-20s %-16s %-16s %-30s", persoonlijk_advies_id, begeleiderVoornaam + " " + begeleiderAchternaam, begeleiderSpecialisatie, onderwerp, advies);
+                } else {
+                    personalTrainerString = String.format("%-2s %-20s %-16s %-16s %-30s", persoonlijk_advies_id, begeleiderVoornaam + " " + begeleiderTussenvoegsel + " " + begeleiderAchternaam, begeleiderSpecialisatie, onderwerp, advies);
+                }
+                items.add(personalTrainerString);
+            }
+        } else {
+            items.add("Er geen persoonlijk advies voor jou.");
+        }
+
     }
 }

@@ -61,20 +61,20 @@ public class abonnementController {
 
             // checks if the selected is the header
             if (!abonnementID.equals("ID")) {
-                boolean confirmed = sceneController.showConfirmationPopup("Weet je zeker dat je een nieuw abonnement wil?\nAls je ok klikt ga je akkoord met de vooorwaarden.");
+                boolean confirmed = sceneController.showConfirmationPopup("Weet je zeker dat je een nieuw abonnement wil?\nAls je ok klikt ga je akkoord met de voorwaarden.");
                 if (confirmed) {
                     // checks if user already has a subscription
                     if (databaseManagement.checkSubscriptionExists(username, 0)) {
                         sceneController.showPopup("Beindig eerst je vorige abonnement voordat je een nieuwe afsluit.");
                     } else {
-                        String IBAN = sceneController.showInputPopup("Om een nieuw abonnement af te sluiten hebben wij eerst uw IBAN nodig.", "Vul hier uw IBAN in:");
+                        String IBAN = sceneController.showInputPopup("Om een nieuw abonnement af te sluiten hebben wij eerst uw IBAN nodig.", "Vul hier uw IBAN in:", "NL44 RABO 0126870856");
                         System.out.println(IBAN);
                         // checks if IBAN is valid
                         if (IBAN.matches("^[a-zA-Z]{2}[0-9]{2} [a-zA-Z]{4} [0-9]{10}$")) {
                             databaseManagement.insertIBAN(IBAN, username);
                             databaseManagement.insertSubscription(username, Integer.parseInt(abonnementID));
                         } else {
-
+                            sceneController.showPopup("Dit is geen geldige IBAN.");
                         }
                     }
                 }
@@ -100,6 +100,7 @@ public class abonnementController {
 
             // gets every array one by one
             for (ArrayList abonnement : abonnementsvormen) {
+
                 String abonnements_id = (String) abonnement.get(0);
                 String abonnementsnaam = (String) abonnement.get(1);
                 String beschrijving = (String) abonnement.get(2);

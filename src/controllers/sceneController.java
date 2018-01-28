@@ -83,9 +83,9 @@ public class sceneController {
         }
     }
 
-    public static String showInputPopup(String inputHeader, String inputMessage) {
-        TextInputDialog dialog = new TextInputDialog("walter");
-        dialog.setTitle("Text Input Dialog");
+    public static String showInputPopup(String inputHeader, String inputMessage, String defaultValue) {
+        TextInputDialog dialog = new TextInputDialog(defaultValue);
+        dialog.setTitle("Input popup");
         dialog.setHeaderText(inputHeader);
         dialog.setContentText(inputMessage);
 

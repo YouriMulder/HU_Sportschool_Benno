@@ -78,7 +78,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </VBox>
-            <HBox>
+            <HBox spacing="20.0">
                <children>
                   <VBox spacing="20.0">
                      <children>
@@ -138,7 +138,7 @@
                               </VBox>
                            </children>
                            <VBox.margin>
-                              <Insets left="10.0" right="10.0" />
+                              <Insets left="5.0" right="5.0" />
                            </VBox.margin>
                         </VBox>
                         <VBox fx:id="dashboardBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="620.0">
@@ -166,7 +166,7 @@
                               </VBox>
                            </children>
                            <VBox.margin>
-                              <Insets left="10.0" right="10.0" />
+                              <Insets left="5.0" right="5.0" />
                            </VBox.margin>
                         </VBox>
                      </children>
@@ -189,7 +189,7 @@
                                        <children>
                                           <VBox alignment="TOP_CENTER">
                                              <children>
-                                                <ListView fx:id="begeleidersList" prefHeight="100.0" prefWidth="620.0" />
+                                                <ListView fx:id="begeleidersList" minHeight="-Infinity" prefHeight="100.0" prefWidth="620.0" />
                                                 <Button fx:id="veranderBegeleiderButton" mnemonicParsing="false" onAction="#veranderBegeleiderButtonClicked" text="Klik hier om jouw keuze door te voeren" />
                                              </children>
                                           </VBox>
@@ -201,6 +201,9 @@
                                  </VBox.margin>
                               </VBox>
                            </children>
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </VBox.margin>
                         </VBox>
                         <VBox fx:id="dashboardBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="620.0">
                            <children>
@@ -231,7 +234,7 @@
                                              </children>
                                           </VBox>
                                           <VBox prefWidth="20.0" />
-                                          <VBox prefWidth="150.0">
+                                          <VBox prefWidth="130.0">
                                              <children>
                                                 <Label fx:id="abbonnementsIngangsDLabel" text="Ingangs datum:" />
                                                 <Label fx:id="abbonnementsEindDLabel" text="Eind datum:" />
@@ -268,6 +271,36 @@
                                  </VBox.margin>
                               </VBox>
                            </children>
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox fx:id="dashboardBox" alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="620.0">
+                           <children>
+                              <HBox fx:id="dashboardTitleBox" alignment="TOP_CENTER">
+                                 <children>
+                                    <Label text="Jouw persoonlijk advies" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <VBox>
+                                 <children>
+                                    <HBox alignment="TOP_CENTER">
+                                       <children>
+                                          <ListView fx:id="adviesList" minHeight="-Infinity" prefHeight="200.0" prefWidth="620.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </VBox.margin>
                         </VBox>
                      </children>
                   </VBox>
