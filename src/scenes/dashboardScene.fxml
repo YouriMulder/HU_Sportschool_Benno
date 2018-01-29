@@ -153,12 +153,13 @@
                               </HBox>
                               <VBox>
                                  <children>
-                                    <HBox alignment="TOP_CENTER">
+                                    <VBox alignment="TOP_CENTER">
                                        <children>
+                                          <Label fx:id="averageHoursLabel" text="Gemiddeld aantal uren in de sportschool deze maand:: " />
                                           <ListView fx:id="sessiesList" prefWidth="620.0">
                                     </ListView>
                                        </children>
-                                    </HBox>
+                                    </VBox>
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

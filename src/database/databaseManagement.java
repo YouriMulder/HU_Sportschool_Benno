@@ -226,20 +226,45 @@ public class databaseManagement {
             String incheck_tijd = rs.getString("incheck_tijd");
             String uitcheck_tijd = rs.getString("uitcheck_tijd");
             String sessie_duur = rs.getString("sessie_duur");
-            String tag = rs.getString("tag");
+            String tag_id = rs.getString("tag_id");
             String account_id = rs.getString("account_id");
 
             innerList.add(sessie_id);
             innerList.add(incheck_tijd);
             innerList.add(uitcheck_tijd);
             innerList.add(sessie_duur);
-            innerList.add(tag);
+            innerList.add(tag_id);
             innerList.add(account_id);
             result.add(innerList);
         }
 
         disconnectDatabase(conn);
         return result;
+    }
+
+    public static String getSessiesDurationCol(String usernameInput, int accountID) throws Exception {
+        String average = "";
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+        if (!usernameInput.equals("")) {
+            statement = conn.prepareStatement("SELECT SEC_TO_TIME(AVG(TIME_TO_SEC(sessie_duur))) AS sessie_duur FROM sessies WHERE account_id=(SELECT account_id FROM accounts WHERE username ='" + usernameInput + "')" +
+                    "AND MONTH(sessie_duur) = MONTH(CURRENT_DATE())" +
+                    "AND YEAR(sessie_duur) = YEAR(CURRENT_DATE());");
+        } else if (accountID != 0) {
+            statement = conn.prepareStatement("SELECT SEC_TO_TIME(AVG(TIME_TO_SEC(sessie_duur))) AS sessie_duur FROM sessies WHERE account_id='" + accountID + "'" +
+                    "AND MONTH(sessie_duur) = MONTH(CURRENT_DATE())" +
+                    "AND YEAR(sessie_duur) = YEAR(CURRENT_DATE());");
+        }
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            average = rs.getString("sessie_duur");
+        }
+
+        disconnectDatabase(conn);
+        return average;
     }
 
     public static ArrayList<String> getAccountRow(String usernameInput, int accountID) throws Exception {
@@ -623,7 +648,6 @@ public class databaseManagement {
 
 
     public static void main(String args[]) throws Exception {
-        Connection conn = getDatabaseConnection();
-        System.out.println(conn);
+        System.out.println(getSessiesDurationCol("youri", 0));
     }
 }

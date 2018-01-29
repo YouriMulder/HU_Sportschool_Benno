@@ -125,6 +125,4 @@ public class abonnementController {
         databaseManagement.removeSubscriptionRow(username);
         sceneController.showPopup("Jou huidige abonnement is opgezegd.");
     }
-
-
 }

@@ -33,6 +33,7 @@ public class dashboardController {
 
     // session box
     public ListView<String> sessiesList;
+    public Label averageHoursLabel;
 
     // personal trainers box
     public ListView<String> begeleidersList;
@@ -102,6 +103,9 @@ public class dashboardController {
                 // ending time
                 String end_time = (String) sessie.get(2);
                 end_time = end_time.substring(11, 19);
+
+                String durations = databaseManagement.getSessiesDurationCol(username, 0);
+                averageHoursLabel.setText("Gemiddeld aantal uren in de sportschool deze maand: " + durations);
 
                 String sessieString = String.format("%-20s %-25s %-25s %-25s", "Datum: " + date, "Begin tijd: " + start_time, "Stop tijd: " + end_time, "Totaal tijd: " + sessie.get(3));
                 items.add(sessieString);
