@@ -288,11 +288,12 @@
                               </HBox>
                               <VBox>
                                  <children>
-                                    <HBox alignment="TOP_CENTER">
+                                    <VBox alignment="TOP_CENTER">
                                        <children>
                                           <ListView fx:id="adviesList" minHeight="-Infinity" prefHeight="200.0" prefWidth="620.0" />
+                                          <Button fx:id="voegAdviesToeButton" mnemonicParsing="false" onAction="#voegAdviesToeButtonPressed" text="Klik hier om nieuw advies toe te voegen" />
                                        </children>
-                                    </HBox>
+                                    </VBox>
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

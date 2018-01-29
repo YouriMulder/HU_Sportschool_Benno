@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.persoonlijkAdviesController">
+   <center>
+      <VBox fx:id="navBar" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="400.0" right="400.0" top="50.0" />
+         </padding>
+         <children>
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <Label text="Begeleider ID (Deze kunt u vinden op uw dashboard)" />
+                  <TextField fx:id="begeleiderIDField" alignment="CENTER" promptText="1" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <Label text="Onderwerp" />
+                  <TextField fx:id="onderwerpField" alignment="CENTER" promptText="Gewichten" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <Label text="Advies" />
+                  <TextField fx:id="adviesField" alignment="CENTER" promptText="Til vanuit je benen" />
+               </children>
+            </VBox>
+            <Button fx:id="adviesOpslaanButton" mnemonicParsing="false" onAction="#adviesOpslaanButtonPressed" text="Advies opslaan" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <top>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="menuAccent" maxHeight="55.0" prefHeight="55.0">
+               <children>
+                  <HBox maxHeight="-Infinity" prefHeight="10.0" />
+                  <HBox fx:id="menuBar" maxHeight="45.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="640.0">
+                           <children>
+                              <Button fx:id="goToHomeButton" mnemonicParsing="false" onAction="#goToHomeButtonPressed" text="Home" />
+                              <Button fx:id="goToDashboardButton" mnemonicParsing="false" onAction="#goToDashboardButtonPressed" text="Dashboard" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="640.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></HBox>
+   </top>
+   <bottom>
+      <HBox fx:id="menuBlackAccent" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="11.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <HBox fx:id="navBar" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <HBox fx:id="navBar" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

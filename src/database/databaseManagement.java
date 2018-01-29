@@ -646,8 +646,19 @@ public class databaseManagement {
         return "";
     }
 
+    public static void insertPersonalAdviceRow(int begeleiderID, String username, String onderwerp, String advies) throws Exception {
+        System.out.println("Inserting personal advice");
+
+        String querry = "INSERT INTO persoonlijk_advies (onderwerp, advies, klant_id, begeleider_id)" +
+                "VALUES ('" + onderwerp + "', '" + advies + "', (SELECT klant_id FROM klanten WHERE account_id = (SELECT account_id FROM accounts WHERE username = '" + username +"')), '" + begeleiderID + "' )";
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(querry);
+        preparedStatement.executeUpdate();
+        disconnectDatabase(conn);
+    }
+
 
     public static void main(String args[]) throws Exception {
-        System.out.println(getSessiesDurationCol("youri", 0));
     }
 }

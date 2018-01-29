@@ -36,6 +36,7 @@ public class mainController implements Initializable {
     // go to another page buttons
     public Button goToLoginButton;
     public Button goToRegisterButton;
+    public Button goToPersonalAdviceButton;
 
 
     @Override

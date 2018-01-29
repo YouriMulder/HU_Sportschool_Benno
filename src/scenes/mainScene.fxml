@@ -27,9 +27,9 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="640.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="640.0" spacing="10.0">
                      <children>
-                        <Button fx:id="goToRegisterButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToRegisterButtonPressed" text="Lid worden" />
+                        <Button fx:id="goToRegisterButton1" alignment="CENTER" mnemonicParsing="false" onAction="#goToRegisterButtonPressed" text="Lid worden" />
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />

@@ -51,6 +51,7 @@ public class dashboardController {
 
     // personal advice box
     public ListView<String> adviesList;
+    public Button voegAdviesToeButton;
 
     @FXML
     public void initialize() throws Exception {
@@ -334,5 +335,9 @@ public class dashboardController {
             items.add("Er geen persoonlijk advies voor jou.");
         }
 
+    }
+
+    public void voegAdviesToeButtonPressed(javafx.event.ActionEvent event) throws Exception {
+        sceneController.changeScene(event, getClass(), "PersoonlijkAdviesScene");
     }
 }
