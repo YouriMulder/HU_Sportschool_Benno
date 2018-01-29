@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class databaseManagement {
 
     private static String databaseAddress = "jdbc:mysql://localhost/sportschool";
-    private static String databaseUser = "root";
+    private static String databaseUser = "Youri";
     private static String databasePassword = "MySQL123";
 
     // connects to the database and returns the connection
@@ -242,6 +242,39 @@ public class databaseManagement {
         return result;
     }
 
+    public static ArrayList<String> getAccountRow(String usernameInput, int accountID) throws Exception {
+        ArrayList<String> result = new ArrayList<>();
+
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+        if (!usernameInput.equals("")) {
+            statement = conn.prepareStatement("SELECT * FROM accounts WHERE username ='" + usernameInput + "';");
+        } else if (accountID != 0) {
+            statement = conn.prepareStatement("SELECT * FROM accounts WHERE account_id='" + accountID + "'");
+        }
+
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            String account_id = rs.getString("account_id");
+            String username = rs.getString("username");
+            String email = rs.getString("email");
+            String passwd = rs.getString("passwd");
+            String akkoord_voorwaarden = rs.getString("akkoord_voorwaarden");
+            String klant_id = rs.getString("klant_id");
+
+            result.add(account_id);
+            result.add(username);
+            result.add(email);
+            result.add(passwd);
+            result.add(akkoord_voorwaarden);
+            result.add(klant_id);
+        }
+
+        disconnectDatabase(conn);
+        return result;
+    }
+
     public static ArrayList<String> getBegeleidersRow(String begeleiderID) throws Exception {
         ArrayList<String> result = new ArrayList<>(10);
 
@@ -362,7 +395,7 @@ public class databaseManagement {
         return result;
     }
 
-    public static ArrayList<ArrayList> getAbonnementsvormenTable() throws Exception {
+    public static ArrayList<ArrayList> getDefaultSubscriptionsTable() throws Exception {
         ArrayList<ArrayList> result = new ArrayList<>();
 
         Connection conn = getDatabaseConnection();
@@ -481,7 +514,7 @@ public class databaseManagement {
         System.out.println("Deleted subscription");
     }
 
-    public static ArrayList<String> getAbonnementsvormRow(String abonnementsvormID) throws Exception {
+    public static ArrayList<String> getDefaultSubscriptionRow(String abonnementsvormID) throws Exception {
         ArrayList<String> result = new ArrayList<>();
 
         Connection conn = getDatabaseConnection();
@@ -570,6 +603,27 @@ public class databaseManagement {
         return "";
     }
 
+    public static String getEMail(String username) throws Exception {
+        System.out.println("getting IBAN");
+        Connection conn = getDatabaseConnection();
+        PreparedStatement statement = conn.prepareStatement("");
+        statement = conn.prepareStatement("SELECT email FROM accounts WHERE username ='" + username + "'");
 
-    public static void main(String args[]) throws Exception { }
+        ResultSet rs = statement.executeQuery();
+
+        if (rs.next()) {
+            String email = rs.getString("email");
+            disconnectDatabase(conn);
+            return email;
+        }
+
+        disconnectDatabase(conn);
+        return "";
+    }
+
+
+    public static void main(String args[]) throws Exception {
+        Connection conn = getDatabaseConnection();
+        System.out.println(conn);
+    }
 }

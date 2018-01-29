@@ -1,6 +1,8 @@
 package controllers;
 
 import database.databaseManagement;
+import mail.sendMail;
+
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -8,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 
 public class registerController {
 
@@ -82,7 +85,16 @@ public class registerController {
             // sets the foreign key
             databaseManagement.updateAccount_klantID(account_id);
             // closes stage if account is registered
-            sceneController.showPopup("Account created successfully");
+            sceneController.showPopup("Account is aangemaakt.\n" +
+                    "U ontvangt een mail van ons met de uw inloggegevens.");
+
+            // sends an email to the user when the account is created
+            sendMail.newAccount(eMail, username, voornaam + " " + tussenvoegsel + " " + achternaam, geslacht, postcode, huisnummer);
+
+            // sends an email to benno when a new account is created.
+            sendMail.bennoNewAccount(eMail, username, voornaam + " " + tussenvoegsel + " " + achternaam, geslacht, postcode, huisnummer);
+
+
             final Node source = (Node) a.getSource();
             final Stage stage = (Stage) source.getScene().getWindow();
             stage.close();

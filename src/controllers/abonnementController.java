@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import mail.sendMail;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -71,8 +72,12 @@ public class abonnementController {
                         System.out.println(IBAN);
                         // checks if IBAN is valid
                         if (IBAN.matches("^[a-zA-Z]{2}[0-9]{2} [a-zA-Z]{4} [0-9]{10}$")) {
+                            // insert IBAN into databse
                             databaseManagement.insertIBAN(IBAN, username);
+                            // insert new subscription into database
                             databaseManagement.insertSubscription(username, Integer.parseInt(abonnementID));
+                            // sends email to the user
+                            sendMail.newAbonnement(username, 0);
                         } else {
                             sceneController.showPopup("Dit is geen geldige IBAN.");
                         }
@@ -90,7 +95,7 @@ public class abonnementController {
 
     public void setAbonnementenBox() throws Exception {
         ArrayList<ArrayList> abonnementsvormen;
-        abonnementsvormen = databaseManagement.getAbonnementsvormenTable();
+        abonnementsvormen = databaseManagement.getDefaultSubscriptionsTable();
         ObservableList<String> items = abonnementenList.getItems();
 
         if (!abonnementsvormen.isEmpty()) {

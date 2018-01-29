@@ -1,17 +1,13 @@
 package controllers;
 
 import database.databaseManagement;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class dashboardController {
@@ -271,7 +267,7 @@ public class dashboardController {
                 abonnementStartDateLabel.setText(startDate);
                 abonnementEndDateLabel.setText(endDate);
 
-                defaultSubscriptionsTable = databaseManagement.getAbonnementsvormRow(abonnementsvorm_id);
+                defaultSubscriptionsTable = databaseManagement.getDefaultSubscriptionRow(abonnementsvorm_id);
 
                 if (!defaultSubscriptionsTable.isEmpty()) {
                     // Default subscription variables
