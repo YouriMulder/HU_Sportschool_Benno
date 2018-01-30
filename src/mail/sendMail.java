@@ -140,7 +140,7 @@ public class sendMail {
         session.setDebug(true);
         InternetAddress fromAddress = new InternetAddress("sportschoolbenno@hotmail.com","Benno Bakker");
         InternetAddress toAddress = new InternetAddress(emailTo);
-        String msgSubject = "Benno's Sportschool - Account aangemaakt";
+        String msgSubject = "Benno's Sportschool - Nieuw abonnement afgesloten";
         String msgBody = "Je hebt een nieuw abonnement afgesloten.\n" +
                 "Je abonnementgegevens:\n" +
                 "Abonnement ID: " + abonnementsvorm_id + "\n" +
