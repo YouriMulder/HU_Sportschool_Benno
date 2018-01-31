@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class databaseManagement {
 
-    private static String databaseAddress = "jdbc:mysql://192.168.42.2/sportschool";
+    private static String databaseAddress = "jdbc:mysql://localhost/sportschool";
     private static String databaseUser = "Youri";
     private static String databasePassword = "MySQL123";
 
