@@ -36,7 +36,6 @@ public class mainController implements Initializable {
     // go to another page buttons
     public Button goToLoginButton;
     public Button goToRegisterButton;
-    public Button goToPersonalAdviceButton;
 
 
     @Override
@@ -48,6 +47,7 @@ public class mainController implements Initializable {
         addAllImagesToList(imageList);
         imageView.setImage(imageList.get(0));
         imageView.setFitWidth(imageView.getFitWidth());
+        imageView.setFitHeight(imageView.getFitHeight());
 
         // image handler
         // button 1 onze sportschool
